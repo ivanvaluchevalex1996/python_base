@@ -71,7 +71,7 @@ bool([1, 2])   # True — непустой список
 # if (age >= 18 && hasTicket) {}
 
 # ...остальное также
-
+m = 1
 if m > 6 and m < 10:
     optimal_sleep_duration = True
 else:                           # ← на уровне if
