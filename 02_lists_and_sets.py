@@ -239,23 +239,28 @@
 
 
 # =============================================================================
-# 6.1. ЛОВУШКИ ДЛЯ ТЕХ, КТО ПРИШЁЛ С JS
+# 7. ЛОВУШКИ ДЛЯ ТЕХ, КТО ПРИШЁЛ С JS
 # =============================================================================
 #
-# 1. range(a, b) — b не включается          → до 100: range(a, 101)
-# 2. sort() / reverse() возвращают None     → копия: sorted(arr) или arr[::-1]
-# 3. {} — это dict, не set                  → пустой set: set()
-# 4. = для списков — ссылка, не копия       → копия: arr.copy()
-# 5. append([1,2]) ≠ extend([1,2])          → append вложит список целиком
-# 6. индексы с 0 (как в JS), не с 1
-# 7. splice ≈ insert / pop / del, но разделены на разные методы
-# 8. arr.includes(x)  →  x in arr
-# 9. arr.length       →  len(arr)
-# 10. [...a, ...b]    →  a + b
+# 1. range(a, b) — b не включается              → до 100: range(a, 101)
+# 2. for i in range(len(a))                     → for (let i = 0; i < a.length; i++)
+# 3. sort() / reverse() возвращают None         → копия: sorted(arr) или arr[::-1]
+# 4. {} — это dict, не set                      → пустой set: set()
+# 5. = для списков — ссылка, не копия           → копия: arr.copy()
+# 6. append([1, 2]) ≠ extend([1, 2])            → append вложит список целиком
+# 7. pop(i) удаляет по индексу                   → JS: splice(i, 1)
+# 8. splice ≈ insert / pop / del, но разделены на разные методы
+# 9. arr.includes(x)  →  x in arr
+# 10. arr.length      →  len(arr)
+# 11. arr.indexOf(x)  →  arr.index(x)
+# 12. [...a, ...b]    →  a + b
+# 13. list("abc") / "abc".split("")             → [..."abc"] (в Python split("") — ❌)
+# 14. arr.forEach     →  for x in arr  или  enumerate(arr)
+# 15. map / filter    →  list comprehension: [x * 2 for x in arr if x > 0]
 
 
 # =============================================================================
-# 7. ЗАДАЧИ
+# 8. ЗАДАЧИ
 # =============================================================================
 
 # --- Задача: index и подсчёт ---
@@ -317,11 +322,43 @@
 # # list_3_len = 5
 
 # 
+# В переменной a хранится список целых неотрицательных чисел. Количество чисел четное.
+# Напишите программу, которая будет делить этот список пополам, определять суммы чисел в половинах списка (sum_left и sum_right). Если sum_left равно sum_right, то сохраните в переменную result значение True,  в противном случае — False.  
 a = [1, 2, 4, 3]
 
-length_half = len(a) / 2
-print(length_half)
+length_half = int(len(a) / 2)
 
-sum_left = 3
-sum_right = 7
-result = False
+sum_left = sum(a[:length_half])
+sum_right  = sum(a[length_half:])
+
+# result = True if sum_left == sum_right else False
+result = sum_left == sum_right
+
+
+# Даны список целых чисел a и число b. Удалите из a только первое и последнее вхождение числа b.  
+
+a = [1, 2, 7, 1, 3, 7, 3]
+b = 7 
+
+# 1 вариант
+# first_index = a.index(b)
+# last_index = len(a)-1-a[::-1].index(b)
+
+# if first_index == last_index:
+#   a.pop(first_index)        # b встречается только один раз
+# else:
+#   a.pop(last_index)         # сначала последнее
+#   a.pop(first_index)        # потом первое
+
+# 2 вариант
+first_idx = a.index(b)
+last_index = 0
+for i in range(len(a)):
+    if a[i] == b:
+        last_index = i
+
+if first_idx == last_index:
+    a.pop(first_idx)
+else:
+    a.pop(last_index)
+    a.pop(first_idx)
