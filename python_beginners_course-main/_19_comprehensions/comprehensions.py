@@ -1,3 +1,55 @@
+""" comprehensions в Python по сути то же, что вы уже знаете в JS, только другой синтаксис.
+
+Главная идея
+Comprehension = map + filter в одной строке
+
+Python	JavaScript
+[x*2 for x in arr]
+arr.map(x => x*2)
+[x for x in arr if x>0]
+arr.filter(x => x>0)
+[x*2 for x in arr if x>0]
+arr.filter(x=>x>0).map(x=>x*2)
+List comprehension → map / filter
+# Python
+[x ** 2 for x in numbers]
+// JS
+numbers.map(x => x ** 2)
+# Python
+[x for x in numbers if x % 2 == 0]
+// JS
+numbers.filter(x => x % 2 === 0)
+Dict comprehension → Object.fromEntries + map
+# Python
+{x: x**2 for x in numbers}
+// JS
+Object.fromEntries(numbers.map(x => [x, x**2]))
+# Python
+{word: len(word) for word in words}
+// JS
+Object.fromEntries(words.map(word => [word, word.length]))
+Из словаря список → Object.keys / values / entries
+# Python
+[k for k in person]
+[v for v in person.values()]
+// JS
+Object.keys(person)
+Object.values(person)
+Как запомнить тип результата
+Смотрите только на внешние скобки:
+
+[ ... ]           # список  → как [...arr.map()]
+{ k: v ... }      # словарь → как Object.fromEntries(...)
+{ x ... }         # set     → как new Set(arr.map(...))
+Шпаргалка «если забыл»
+Нужен массив → [выражение for x in ...]
+Нужен объект → {ключ: значение for x in ...}
+Есть условие → ... if условие в конце (как filter)
+Есть if/else внутри → a if cond else b for x in ... (как тернарник)
+["even" if x % 2 == 0 else "odd" for x in numbers]
+
+numbers.map(x => x % 2 === 0 ? "even" : "odd") """
+
 # Traditional way of creating a list with squares of numbers
 squares = []
 for x in range(10):
