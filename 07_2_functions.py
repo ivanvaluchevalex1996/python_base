@@ -386,9 +386,6 @@
 # # {'name': 'Anna', 'age': 25, 'city': 'Moscow'}
 
 
-double = lambda x: x*x
-add = lambda a, b: a + b
-greet = lambda: "hello"
 # full_name = lambda first, last: f"{first} {last}"
 # 
 # то же что и 
@@ -489,7 +486,8 @@ def get_foo(input_list):
 
 
 
-print(get_foo(input_list))
+# print(get_foo(input_list))
+
 
 # result = [('Ivan', 30), ('Olga', 25), ('Ivan', 20)]
 
@@ -506,7 +504,7 @@ def reverse_tuple(lst):
     return tuple(result)
     
 
-print(reverse_tuple([1, 3, 1, 4])) # -> (4, 1, 3)
+# print(reverse_tuple([1, 3, 1, 4])) # -> (4, 1, 3)
 reverse_tuple([1, 3, 4]) # -> (4, 3, 1)
 reverse_tuple([1, 3, 4, 4, 5, 2]) # -> (2, 5, 4, 3, 1)
 
@@ -539,7 +537,7 @@ def update_tuple(input_tuple, el_del):
     return tuple(result) """
 
 
-print(update_tuple((1, 2, 3), 1)) #-> (2, 3)
+# print(update_tuple((1, 2, 3), 1)) #-> (2, 3)
 update_tuple((1, 2, 3, 3, 9, 5), 3) #-> (1, 2, 3, 9, 5)
 update_tuple((1, 2, 3), 9) #-> (1, 2, 3)
 
@@ -588,6 +586,7 @@ def sorting_hat(new_students):
     # оптимальное решение, сначала строи словарь с факультетами
 
     dictionary = {}
+  
 
 
     for facult, qualities in faculties.items():
@@ -635,7 +634,7 @@ def sorting_hat(new_students):
 
 
 
-# print(sorting_hat(new_students))
+print(sorting_hat(new_students))
 
 
 # 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢 ЗУЕВО РЕШГИЛ ЩЗАДАЧИ, ПРОРЕЩШАТЬ ПОДОБНЫЕ
@@ -659,10 +658,13 @@ def sorting_hat(new_students):
 #     'Николай Гоголь': ['Мёртвые души']
 # }
 
-def group_books_by_author(books):
-    # Ваш код здесь
-    pass """
+ """
 
+def group_books_by_author(books):
+    dd = {}
+    for k,v in books.items():
+        dd[v] = [k]
+    return dd
 
 
 """ products = {
@@ -684,9 +686,13 @@ def group_books_by_author(books):
 #     120: ['масло']
 # }
 
+"""
 def group_products_by_price(products):
     # Ваш код здесь
-    pass """
+    dd = {}
+    for k,v in products.items():
+        dd.setdefault(v,[]).append(k)
+    return dd
 
 
 
@@ -708,12 +714,17 @@ def group_products_by_price(products):
 #     'Дмитрий': 3.0
 # }
 
+ """
 def calculate_average_grades(students):
     # Ваш код здесь
-    pass """
+    dd= {}
+    for k,v in students.items():
+        avg = sum(v)/len(v)
+        dd[k] = avg
+    return dd
 
 
-""" text = "кот собака кот птица рыба кот птица собака кот рыба"
+""" 
 
 # Посчитайте, сколько раз встречается каждое слово
 # Ожидаемый результат:
@@ -723,39 +734,35 @@ def calculate_average_grades(students):
 #     'птица': 2,
 #     'рыба': 2
 # }
+"""
 
+text = "кот собака кот птица рыба кот птица собака кот рыба"
 def count_word_frequency(text):
-    # Ваш код здесь
-    pass """
+    dd= {}
+    for x in text.split(" "):
+        # value = dd.get(x,0)
+        # dd[x] = value+1
+        # или
+        dd[x] = dd.setdefault(x,0)+1
+    return dd
 
 
 
-""" cities = {
-    'Москва': 'Россия',
-    'Париж': 'Франция',
-    'Лондон': 'Великобритания',
-    'Берлин': 'Германия',
-    'Мадрид': 'Испания',
-    'Санкт-Петербург': 'Россия',
-    'Марсель': 'Франция',
-}
+""" 
 
-# Создайте обратный словарь: страна → [города этой страны]
+# Конвертируйте все цены в рубли и создайте словарь: товар → цена в рублях
 # Ожидаемый результат:
 # {
-#     'Россия': ['Москва', 'Санкт-Петербург'],
-#     'Франция': ['Париж', 'Марсель'],
-#     'Великобритания': ['Лондон'],
-#     'Германия': ['Берлин'],
-#     'Испания': ['Мадрид']
+#     'ноутбук': 75000,
+#     'телефон': 42500,
+#     'книга': 2000,
+#     'часы': 11250,
+#     'сумка': 6800
 # }
 
-def group_cities_by_country(cities):
-    # Ваш код здесь
-    pass """
+"""
 
-
-""" rates = {
+rates = {
     'USD': 75,
     'EUR': 85,
     'GBP': 100,
@@ -769,19 +776,13 @@ prices = {
     'сумка': {'EUR': 80},
 }
 
-# Конвертируйте все цены в рубли и создайте словарь: товар → цена в рублях
-# Ожидаемый результат:
-# {
-#     'ноутбук': 75000,
-#     'телефон': 42500,
-#     'книга': 2000,
-#     'часы': 11250,
-#     'сумка': 6800
-# }
-
 def convert_to_rubles(prices, rates):
     # Ваш код здесь
-    pass """
+    dd = {}
+    for k,v in prices.items():
+        end_sum = rates[list(v.keys())[0]] * list(v.values())[0]
+        dd[k] = end_sum
+    return dd
 
 
 """ words = ['кот', 'ток', 'сон', 'нос', 'лист', 'ситл', 'пила', 'липа']
@@ -795,10 +796,22 @@ def convert_to_rubles(prices, rates):
 #     'пила': ['пила', 'липа']
 # }
 
-def group_anagrams(words):
-    # Ваш код здесь
-    pass """
+"""
 
+def group_anagrams(words):
+    # Сначала группируем по ключам
+    temp = {}
+    for word in words:
+        key = ''.join(sorted(word))
+        temp.setdefault(key, []).append(word)
+    
+    # Преобразуем ключи в первое слово группы
+    result = {}
+    for group in temp.values():
+        # Берем первое слово как ключ
+        result[group[0]] = group
+    
+    return result
 
 """ grades = {
     'Анна': {'математика': 5, 'физика': 4, 'химия': 5},
@@ -815,10 +828,28 @@ def group_anagrams(words):
 #     'химия': 4.5
 # }
 
+ """
+
 def calculate_subject_averages(grades):
     # Ваш код здесь
-    pass """
-
+    dd = {}
+    for _,subjects in grades.items():
+        for subject, score in subjects.items():
+            if subject not in dd:
+                dd[subject] = {'sum': 0, 'count': 0}
+            dd[subject]["sum"] += score 
+            dd[subject]["count"] += 1 
+    
+    res = {}
+    for k,v in dd.items():
+        res[k] = v['sum'] / v['count']
+    return res
+# print(calculate_subject_averages({
+#     'Анна': {'математика': 5, 'физика': 4, 'химия': 5},
+#     'Борис': {'математика': 3, 'физика': 3, 'химия': 4},
+#     'Виктор': {'математика': 5, 'физика': 5, 'химия': 5},
+#     'Галина': {'математика': 4, 'физика': 4, 'химия': 4},
+# }))
 
 """ phone_book = [
     ('Иванов', '8-912-345-67-89'),
@@ -836,6 +867,66 @@ def calculate_subject_averages(grades):
 #     'Сидоров': ['8-934-567-89-01']
 # }
 
+"""
+
 def group_phones_by_name(phone_book):
     # Ваш код здесь
-    pass """
+    dd = {}
+    for x in phone_book:
+        dd.setdefault(x[0],[]).append(x[1])
+    return dd
+
+    
+    """
+Создайте функцию analyze_transactions, которая возвращает словарь:
+{
+    'total_by_user': {user: общая_сумма_покупок},
+    'total_by_category': {категория: общая_сумма},
+    'user_categories': {user: [список_категорий_без_повторов]},
+    'average_check': средняя_сумма_чека,
+    'max_transaction': транзакция_с_максимальной_суммой
+}
+"""
+
+def analyze_transactions(transactions):
+    total_by_user = {}
+    total_by_category = {}
+    user_categories = {}
+    average_check = 0
+    m_sum = 0
+    max_transaction = None
+    for t in transactions:
+        total_by_user[t["user"]] = total_by_user.setdefault(t["user"], 0) + t["amount"]
+        total_by_category[t["category"]] = total_by_category.setdefault(t["category"], 0) + t["amount"]
+
+        user_categories.setdefault(t["user"], [])
+        if t["category"] not in user_categories[t["user"]]:
+            user_categories[t["user"]].append(t["category"])        
+
+        m_sum+=t["amount"]
+
+        if max_transaction is None or t["amount"] > max_transaction["amount"]:
+                max_transaction = t  # ← сохраняем весь словарь
+
+    average_check = m_sum / len(transactions)
+
+
+    return {
+        "total_by_user" : total_by_user,
+        "total_by_category" : total_by_category,
+        "user_categories" : user_categories,
+        "average_check": average_check, 
+        "max_transaction": max_transaction, 
+    }
+
+print(analyze_transactions([
+    {'id': 1, 'user': 'Анна', 'amount': 1500, 'category': 'еда', 'date': '2024-01-15'},
+    {'id': 3, 'user': 'Анна', 'amount': 5000, 'category': 'одежда', 'date': '2024-01-16'},
+    {'id': 6, 'user': 'Анна', 'amount': 2500, 'category': 'еда', 'date': '2024-01-17'},
+    {'id': 4, 'user': 'Виктор', 'amount': 3500, 'category': 'еда', 'date': '2024-01-16'},
+    {'id': 5, 'user': 'Борис', 'amount': 8000, 'category': 'электроника', 'date': '2024-01-17'},
+    {'id': 2, 'user': 'Борис', 'amount': 2000, 'category': 'транспорт', 'date': '2024-01-15'},
+    {'id': 7, 'user': 'Борис', 'amount': 3000, 'category': 'одежда', 'date': '2024-01-18'},
+]))
+
+
