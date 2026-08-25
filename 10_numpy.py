@@ -24,7 +24,9 @@ import numpy as np
 #   size   — сколько элементов всего
 
 a = np.array([1, 2, 3, 4, 5])
-print("1D:", a, "| shape:", a.shape, "| dtype:", a.dtype)
+b = np.array([[1, 2], [3, 4], [5, 6]])
+# print("1D:", a, "| shape:", a.shape, "| dtype:", a.dtype)
+print("1D:", b, "| shape:", b.shape, "| dtype:", b.dtype)
 
 # В ML чаще 2D: строки = объекты (samples), столбцы = признаки (features)
 # X.shape = (n_samples, n_features)
@@ -42,17 +44,17 @@ print("X ndim:", X.ndim)     # 2
 # =============================================================================
 
 print("\n--- создание ---")
-print(np.zeros((2, 3)))          # матрица нулей (bias init, маски)
-print(np.ones((2, 3)))           # единицы
-print(np.full((2, 3), 7))        # заполнить значением
-print(np.eye(3))                 # единичная матрица 3x3
-print(np.arange(0, 10, 2))       # [0 2 4 6 8] как range, но массив
-print(np.linspace(0, 1, 5))      # 5 чисел от 0 до 1 равномерно
+print("zeros(2,3):", np.zeros((2, 3)))          # матрица нулей (bias init, маски)
+print("ones(2,3):", np.ones((2, 3)))            # единицы
+print("full(2,3)=7:", np.full((2, 3), 7))       # заполнить значением
+print("eye(3):", np.eye(3))                     # единичная матрица 3x3
+print("arange(0,10,2):", np.arange(0, 10, 2))   # [0 2 4 6 8] как range, но массив
+print("linspace(0,1,5):", np.linspace(0, 1, 5)) # 5 чисел от 0 до 1 равномерно
 
 # Случайные числа — в ML везде (инициализация, shuffle, train/test)
 rng = np.random.default_rng(42)  # seed=42 → воспроизводимость
-print(rng.random((2, 3)))        # равномерно [0, 1)
-print(rng.normal(0, 1, size=(2, 3)))  # нормальное распределение
+print("random(2,3) [0,1):", rng.random((2, 3)))           # равномерно [0, 1)
+print("normal(0,1) size(2,3):", rng.normal(0, 1, size=(2, 3)))  # нормальное распределение
 
 
 # =============================================================================
@@ -65,12 +67,12 @@ print("\n--- индексация ---")
 m = np.array([[10, 20, 30],
               [40, 50, 60],
               [70, 80, 90]])
-print("🟢🔴 ~ :68 ~ m:", m)
+print("m:", m)
 
-print(m[0, 1])      # 20 — одна ячейка
-print(m[0])         # [10 20 30] — первая строка
-print(m[:, 0])      # [10 40 70] — первый столбец (все строки)
-print(m[0:2, 1:])   # подматрица: строки 0-1, столбцы с 1
+print("m[0,1] (ячейка):", m[0, 1])      # 20 — одна ячейка
+print("m[0] (строка):", m[0])           # [10 20 30] — первая строка
+print("m[:,0] (столбец):", m[:, 0])     # [10 40 70] — первый столбец (все строки)
+print("m[0:2,1:] (подматрица):", m[0:2, 1:])   # подматрица: строки 0-1, столбцы с 1
 
 # В ML:
 # X[0]      — один объект
@@ -87,10 +89,10 @@ print(m[0:2, 1:])   # подматрица: строки 0-1, столбцы с 
 
 print("\n--- векторизация ---")
 prices = np.array([100, 200, 300], dtype=float)
-print(prices * 1.2)          # +20% ко всем
-print(prices + 10)           # +10 ко всем
-print(np.sqrt(prices))       # корень из каждого
-print(np.log1p(prices))      # log(1+x) — частый трюк в фичах
+print("prices * 1.2:", prices * 1.2)          # +20% ко всем
+print("prices + 10:", prices + 10)            # +10 ко всем
+print("sqrt(prices):", np.sqrt(prices))       # корень из каждого
+print("log1p(prices):", np.log1p(prices))     # log(1+x) — частый трюк в фичах
 
 
 # =============================================================================
@@ -105,9 +107,8 @@ X = np.array([[1., 2., 3.],
               [4., 5., 6.]])      # (2, 3)
 
 mean = X.mean(axis=0)             # среднее по столбцам → (3,)
-print("mean:", mean)
-print('🟢🔴 ~ :109 ~ "mean:", mean:', "mean:", mean)
-print(X - mean)                   # центрирование: из каждой строки вычитаем mean
+print("mean (axis=0):", mean)
+print("X - mean (центрирование):", X - mean)  # центрирование: из каждой строки вычитаем mean
 
 # axis=0 → вдоль строк (итог по столбцам)   ← чаще в ML для признаков
 # axis=1 → вдоль столбцов (итог по строкам)
@@ -119,7 +120,7 @@ print(X - mean)                   # центрирование: из каждо�
 
 print("\n--- aggregation ---")
 y = np.array([1.0, 2.0, 3.0, 4.0])
-print(y.mean(), y.std(), y.min(), y.max(), y.sum())
+print("y mean/std/min/max/sum:", y.mean(), y.std(), y.min(), y.max(), y.sum())
 
 X = np.array([[1., 2.],
               [3., 4.],
@@ -136,17 +137,13 @@ print("по объектам (axis=1):", X.mean(axis=1))    # [1.5 3.5 5.5]
 
 print("\n--- reshape ---")
 v = np.arange(12)
-print("🔴")
-print(v.reshape(3, 4))       # 3 строки × 4 столбца
-print("🟢🔴")
-print(v.reshape(2, -1))      # -1 = «посчитай сам» → (2, 6)
-print("🟢🔴")
-print(v.reshape(-1, 1))      # столбец (12, 1) — часто для y
-print("🟢🔴")
+print("reshape(3,4):\n", v.reshape(3, 4))       # 3 строки × 4 столбца
+print("reshape(2,-1):\n", v.reshape(2, -1))     # -1 = «посчитай сам» → (2, 6)
+print("reshape(-1,1):\n", v.reshape(-1, 1))     # столбец (12, 1) — часто для y
 
 M = np.array([[1, 2, 3],
               [4, 5, 6]])
-print(M.T)                   # транспонирование (2,3) → (3,2)
+print("M.T (транспонирование):\n", M.T)         # транспонирование (2,3) → (3,2)
 
 
 # =============================================================================
@@ -163,12 +160,12 @@ W = np.array([[0.5, 0.1],
 x = np.array([1.0, 2.0, 3.0])     # один объект (3,)
 
 # prediction = x @ W   → (2,)
-print(x @ W)
+print("x @ W (один объект):", x @ W)
 
 # batch: X @ W
 X_batch = np.array([[1., 2., 3.],
                     [4., 5., 6.]])  # (2, 3)
-print(X_batch @ W)                  # (2, 2)
+print("X_batch @ W (batch):\n", X_batch @ W)    # (2, 2)
 
 
 # =============================================================================
@@ -177,12 +174,12 @@ print(X_batch @ W)                  # (2, 2)
 
 print("\n--- mask ---")
 scores = np.array([0.2, 0.8, 0.55, 0.91, 0.4])
-print(scores > 0.5)           # [False  True  True  True False]
-print(scores[scores > 0.5])   # только прошедшие порог
+print("scores > 0.5:", scores > 0.5)           # [False  True  True  True False]
+print("scores[scores > 0.5]:", scores[scores > 0.5])   # только прошедшие порог
 
 # где True → 1, иначе 0 (удобно для метрик)
 preds = (scores >= 0.5).astype(int)
-print(preds)                  # [0 1 1 1 0]
+print("preds (0/1):", preds)                  # [0 1 1 1 0]
 
 
 # =============================================================================
@@ -192,10 +189,10 @@ print(preds)                  # [0 1 1 1 0]
 print("\n--- concat ---")
 a = np.array([[1, 2], [3, 4]])
 b = np.array([[5, 6], [7, 8]])
-print(np.concatenate([a, b], axis=0))  # добавить строки (новые samples)
-print(np.concatenate([a, b], axis=1))  # добавить столбцы (новые features)
-print(np.vstack([a, b]))               # то же, что concat axis=0
-print(np.hstack([a, b]))               # то же, что concat axis=1
+print("concat axis=0 (новые samples):\n", np.concatenate([a, b], axis=0))
+print("concat axis=1 (новые features):\n", np.concatenate([a, b], axis=1))
+print("vstack (= concat axis=0):\n", np.vstack([a, b]))
+print("hstack (= concat axis=1):\n", np.hstack([a, b]))
 
 
 # =============================================================================
@@ -208,12 +205,12 @@ print("\n--- copy vs view ---")
 base = np.array([1, 2, 3, 4])
 view = base[:2]
 view[0] = 999
-print(base)                  # [999 2 3 4] — base тоже изменился!
+print("после view[0]=999, base:", base)      # [999 2 3 4] — base тоже изменился!
 
 base2 = np.array([1, 2, 3, 4])
 copy = base2[:2].copy()
 copy[0] = 999
-print(base2)                 # [1 2 3 4] — оригинал цел
+print("после copy[0]=999, base2:", base2)    # [1 2 3 4] — оригинал цел
 
 
 # =============================================================================
@@ -229,7 +226,7 @@ rng = np.random.default_rng(0)
 X = rng.normal(size=(100, 4))
 y = (X[:, 0] + X[:, 1] > 0).astype(int)
 
-print("X:", X.shape, "y:", y.shape)
+print("X shape / y shape:", X.shape, y.shape)
 
 # --- 12.2 Standardization (z-score) ---
 # x' = (x - mean) / std   по каждому признаку
@@ -246,7 +243,7 @@ train_size = int(0.8 * n)
 train_idx, test_idx = idx[:train_size], idx[train_size:]
 X_train, X_test = X[train_idx], X[test_idx]
 y_train, y_test = y[train_idx], y[test_idx]
-print("train:", X_train.shape, "test:", X_test.shape)
+print("train / test shape:", X_train.shape, X_test.shape)
 
 # --- 12.4 Accuracy ---
 # «предсказали» случайно для примера
