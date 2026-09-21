@@ -21,3 +21,13 @@ def first_non_repeated(s):
     return None
 
 print(first_non_repeated("abacabad"))
+
+def disemvowel(string_):
+    data = ["a", "o", "e", "i", "u"]
+    dd = ""
+    for x in string_:
+        if x.lower() not in data:
+            dd+=x
+    return dd
+
+# print(disemvowel("This website is for losers LOL!"))
