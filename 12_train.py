@@ -30,7 +30,7 @@ def first_non_repeated(s):
             return x
     return None
 
-print(first_non_repeated("abacabad"))
+# print(first_non_repeated("abacabad"))
 
 
 def disemvowel(string_):
@@ -99,7 +99,7 @@ def task_02_5(n):
 def task_02_6(a, b):
     return sum(range(a, b))
 
-print(task_02_6(1, 3))
+# print(task_02_6(1, 3))
 
 
 # --- 02-7 --------------------------------------------------------------------
@@ -237,7 +237,10 @@ print(task_03_4([("a", 1), ("b", 2), ("a", 3)]))
 # Подсчитай, сколько раз встречается каждый символ (setdefault или get).
 # task_03_5("banana") -> {"b": 1, "a": 3, "n": 2}
 def task_03_5(text):
-    ...
+    dd = {}
+    for w in text:
+        dd[w] = dd.setdefault(w, 0) + 1
+    return dd
 # print(task_03_5("banana"))
 
 
@@ -245,6 +248,10 @@ def task_03_5(text):
 # Сгруппируй слова по первой букве (setdefault).
 # task_03_6(["apple", "apricot", "banana"]) -> {"a": ["apple", "apricot"], "b": ["banana"]}
 def task_03_6(words):
+    dd = {}
+    for w in words:
+        dd.setdefault(w[0],[]).append(w)
+    return dd
     ...
 # print(task_03_6(["apple", "apricot", "banana"]))
 
@@ -253,7 +260,7 @@ def task_03_6(words):
 # Оставь только пары со значением >= limit (dict comprehension).
 # task_03_7({"math": 5, "eng": 3, "pe": 2}, 4) -> {"math": 5}
 def task_03_7(d, limit):
-    ...
+    return {k:v for k,v in d.items() if v >=limit}
 # print(task_03_7({"math": 5, "eng": 3, "pe": 2}, 4))
 
 
@@ -261,6 +268,7 @@ def task_03_7(d, limit):
 # Словарь {слово: длина слова}.
 # task_03_8(["cat", "python"]) -> {"cat": 3, "python": 6}
 def task_03_8(words):
+    return {x:len(x) for x  in words}
     ...
 # print(task_03_8(["cat", "python"]))
 
@@ -270,16 +278,28 @@ def task_03_8(words):
 # task_03_9({"apple": {"stock": 10}, "banana": {"stock": 0}})
 #   -> {"apple": {"stock": 10}}
 def task_03_9(inventory):
-    ...
+    dd = {}
+    for k,v in inventory.items():
+        if v["stock"] > 0:
+            dd[k] = v
+    return dd
+
+
 # print(task_03_9({"apple": {"stock": 10}, "banana": {"stock": 0}}))
+
 
 
 # --- 03-10 -------------------------------------------------------------------
 # Средний балл по каждому студенту.
-# task_03_10({"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}})
+# test = {"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}}
+# task_03_10(test)
 #   -> {"s1": 4.5}
 def task_03_10(students):
-    ...
+    dd = {}
+    s = 0
+    for k,v in students.items():
+        
+
 # print(task_03_10({"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}}))
 
 
