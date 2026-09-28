@@ -230,7 +230,7 @@ def task_03_4(pairs):
         dd[k] = value + v
     return dd
 
-print(task_03_4([("a", 1), ("b", 2), ("a", 3)]))
+# print(task_03_4([("a", 1), ("b", 2), ("a", 3)]))
 
 
 # --- 03-5 --------------------------------------------------------------------
@@ -291,14 +291,19 @@ def task_03_9(inventory):
 
 # --- 03-10 -------------------------------------------------------------------
 # Средний балл по каждому студенту.
-# test = {"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}}
+# test = {
+#       "s1": {
+                # "name": "Anna", 
+                # "grades": {"math": 5, "eng": 4}}
+# }
 # task_03_10(test)
 #   -> {"s1": 4.5}
 def task_03_10(students):
     dd = {}
-    s = 0
-    for k,v in students.items():
-        
+    for k, v in students.items():
+        grades = v["grades"].values()
+        dd[k] = sum(grades) / len(grades)
+    return dd
 
 # print(task_03_10({"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}}))
 
@@ -308,7 +313,19 @@ def task_03_10(students):
 # task_03_11({"apple": 50}, {"apple": 40, "mango": 120})
 #   -> {"apple": 40, "mango": 120}
 def task_03_11(shop_a, shop_b):
-    ...
+    dd = {}
+    # keys() возвращает множество
+    keys = shop_a.keys() | shop_b.keys()
+    for x in keys:
+        if x in shop_a and x in shop_b:
+            dd[x] = min(shop_a[x], shop_b[x])
+        elif x in shop_a:
+            dd[x] = shop_a[x]
+        else:
+            dd[x] = shop_b[x]
+    return dd
+
+        
 # print(task_03_11({"apple": 50}, {"apple": 40, "mango": 120}))
 
 
@@ -316,7 +333,12 @@ def task_03_11(shop_a, shop_b):
 # Собери строку "ключ=значение&..." по ключам, отсортированным по алфавиту.
 # task_03_12({"lesson": 2, "course": "python"}) -> "course=python&lesson=2"
 def task_03_12(d):
-    ...
+    # dd = ""
+    # for k,v in sorted(d.items()):
+    #     dd+= f"{k}={v}&"
+    # return dd[-1]    
+    return "&".join(((f"{k}={v}" for k, v in sorted(d.items()))))
+
 # print(task_03_12({"lesson": 2, "course": "python"}))
 
 
@@ -325,8 +347,13 @@ def task_03_12(d):
 # task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}])
 #   -> {"A": [100, 50]}
 def task_03_13(transactions):
-    ...
-# print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]))
+    dd = {}
+    for d in transactions:
+        for k,v in d.items():
+            dd.setdefault(k,[]).append(v)
+    return dd
+
+print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]))
 
 
 # --- 03-14 -------------------------------------------------------------------
