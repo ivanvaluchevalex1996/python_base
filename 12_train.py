@@ -346,14 +346,25 @@ def task_03_12(d):
 # Сгруппируй суммы транзакций по счёту.
 # task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}])
 #   -> {"A": [100, 50]}
+
+# asd = [{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]
+# for x in asd:
+#     print(x)
+
 def task_03_13(transactions):
     dd = {}
-    for d in transactions:
-        for k,v in d.items():
-            dd.setdefault(k,[]).append(v)
+    # for x in transactions:
+    #     for k,v in x.items():
+    #         if k == 'account':
+    #             dd.setdefault(v,[])
+    # return dd
+    for x in transactions:
+        ac = x["account"]
+        am = x["amount"]
+        dd.setdefault(ac,[]).append(am)
     return dd
 
-print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]))
+# print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]))
 
 
 # --- 03-14 -------------------------------------------------------------------
@@ -361,9 +372,103 @@ print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50
 # task_03_14(["MSK"], ["Moscow"], ["Central"])
 #   -> [{"code": "MSK", "name": "Moscow", "region": "Central"}]
 def task_03_14(codes, names, regions):
-    ...
-# print(task_03_14(["MSK"], ["Moscow"], ["Central"]))
+    keys = ["code", "name", "region"]
+    return [dict(zip(keys, rows)) for rows in zip(codes, names, regions)]
 
+# print(task_03_14(["MSK", "SPB"], ["Moscow", "SPb"], ["Central", "NW"]))
+
+# task_1(["MSK", "SPB"], ["Moscow", "Spb"])
+#   -> [("MSK", "Moscow"), ("SPB", "Spb")]
+def task_1(codes, names):
+    return list(zip(codes, names))
+
+# print(task_1(["MSK", "SPB"], ["Moscow", "Spb"]))
+
+# task_2(["MSK", "SPB"], ["Moscow", "Spb"])
+#   -> {"MSK": "Moscow", "SPB": "Spb"}
+def task_2(codes, names):
+    return dict(zip(codes, names))
+
+# print(task_2(["MSK", "SPB"], ["Moscow", "Spb"]))
+
+# task_3(["MSK", "SPB"], ["Moscow", "Spb"])
+#   -> [{"code": "MSK", "name": "Moscow"},
+#       {"code": "SPB", "name": "Spb"}]
+def task_3(codes, names):
+    keys = ["code", "name"]
+    return [dict(zip(keys, x)) for x in zip(codes, names)]
+
+# print(task_3(["MSK", "SPB"], ["Moscow", "Spb"]))
+
+# task_4(["MSK"], ["Moscow"], ["Central"])
+#   -> [{"code": "MSK", "name": "Moscow", "region": "Central"}]
+def task_4(codes, names, regions):
+    return [dict(zip(["code", "name", "region"], rows)) for rows in zip(codes, names, regions)]
+
+# print(task_4(["MSK"], ["Moscow"], ["Central"]))
+
+# task_5([1, 2, 3], [10, 20, 30])
+#   -> [11, 22, 33]
+def task_5(a, b):
+    # dd = []
+    # for n1,n2 in zip(a,b):
+    #     dd.append(n1+n2)
+    # return dd
+    return [z+y for z,y in zip(a,b)]
+
+
+# print(task_5([1, 2, 3], [10, 20, 30]))
+
+# task_6(["a", "b", "c"])
+#   -> [(1, "a"), (2, "b"), (3, "c")]
+def task_6(items):
+    return list(zip(range(1,len(items)+ 1), items))
+
+# print(task_6(["a", "b", "c"]))
+
+# task_8([1, 2, 3, 4], [1, 9, 3, 8])
+#   -> [(2, 9), (4, 8)]
+def task_8(a, b):
+    return [(n1,n2) for n1, n2 in zip(a,b) if n1!=n2]
+
+# print(task_8([1, 2, 3, 4], [1, 9, 3, 8]))
+
+# task_9([1, 2, 3], [1, 2, 3])  -> True
+# task_9([1, 2, 3], [1, 9, 3])  -> False
+def task_9(a, b):
+    return all(n1 == n2 for n1, n2 in zip(a, b))
+ 
+# print(task_9([1, 2, 3], [1, 2, 3]))
+# print(task_9([1, 2, 3], [1, 9, 3]))
+
+# task_10(["a", "", "c"], [1, 2, 3])
+#   -> {"a": 1, "c": 3}
+def task_10(keys, values):
+    return {w:n for  w, n in zip(keys,values) if w !=""}
+
+# print(task_10(["a", "", "c"], [1, 2, 3]))
+
+# task_11([[1, 2, 3],
+#          [4, 5, 6]])
+#   -> [(1, 4), (2, 5), (3, 6)]
+def task_11(matrix):
+    return list(zip(*matrix))
+
+# print(task_11([[1, 2, 3], [4, 5, 6]]))
+
+# task_12(["MSK"], ["Moscow"], ["Central"])
+#   -> [{"f1": "MSK", "f2": "Moscow", "f3": "Central"}]
+def task_12(*columns):
+    keys = [f"f{i}" for i in range(1, len(columns) + 1)]
+    print("🟢🔵🔴 ~ task_12 ~ keys:", keys)
+    print("🟢🔵🔴 ~ task_12 ~ zip(*columns):", list(zip(*columns)))
+    for row1 in (zip(*columns)):
+        print("🔴 ~ task_12 ~ row1:", row1)
+    return [dict(zip(keys, row)) for row in zip(*columns)]
+
+print(task_12(["MSK"], ["Moscow"], ["Central"]))
+
+# разобрать zip(*args)
 
 # =============================================================================
 # БЛОК 04. СТРОКИ
