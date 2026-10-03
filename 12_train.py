@@ -460,15 +460,10 @@ def task_11(matrix):
 #   -> [{"f1": "MSK", "f2": "Moscow", "f3": "Central"}]
 def task_12(*columns):
     keys = [f"f{i}" for i in range(1, len(columns) + 1)]
-    print("🟢🔵🔴 ~ task_12 ~ keys:", keys)
-    print("🟢🔵🔴 ~ task_12 ~ zip(*columns):", list(zip(*columns)))
-    for row1 in (zip(*columns)):
-        print("🔴 ~ task_12 ~ row1:", row1)
     return [dict(zip(keys, row)) for row in zip(*columns)]
 
-print(task_12(["MSK"], ["Moscow"], ["Central"]))
+# print(task_12(["MSK"], ["Moscow"], ["Central"]))
 
-# разобрать zip(*args)
 
 # =============================================================================
 # БЛОК 04. СТРОКИ
@@ -478,7 +473,7 @@ print(task_12(["MSK"], ["Moscow"], ["Central"]))
 # Верни кортеж (длина, первый символ, последний символ).
 # task_04_1("Python") -> (6, "P", "n")
 def task_04_1(s):
-    ...
+    return (len(s), s[0], s[-1]) 
 # print(task_04_1("Python"))
 
 
@@ -486,25 +481,24 @@ def task_04_1(s):
 # Палиндром ли строка (регистр и пробелы не важны).
 # task_04_2("Level") -> True        task_04_2("hello") -> False
 def task_04_2(s):
-    ...
+    return s.lower() == s[::-1].lower()
+    
 # print(task_04_2("Level"))
 # print(task_04_2("hello"))
 
 
-# --- 04-3 --------------------------------------------------------------------
-# Разверни строку.
-# task_04_3("Python") -> "nohtyP"
-def task_04_3(s):
-    ...
-# print(task_04_3("Python"))
 
 
 # --- 04-4 --------------------------------------------------------------------
 # Убери все гласные (a, e, i, o, u — любого регистра).
 # task_04_4("This website is for losers LOL!") -> "Ths wbst s fr lsrs LL!"
 def task_04_4(s):
-    ...
-# print(task_04_4("This website is for losers LOL!"))
+    data = ['a', 'e', 'i', 'o', 'u']
+    asd = ""
+    for letter in s:
+        if letter.lower() not in data:
+            asd += letter
+print(task_04_4("This website is for losers LOL!"))
 
 
 # --- 04-5 --------------------------------------------------------------------

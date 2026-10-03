@@ -41,12 +41,15 @@ def reshape_matrix(a: list[list[int|float]], new_shape: tuple[int, int]) -> list
     if rows * cols != len(arr):
         return []
 
-    for i in range(rows):
+    for x in range(rows):
         row = []
-        for j in range(cols):
-            row.append(arr[i * cols + j])
-        reshaped_matrix.append(row)
-
+        for y in range(cols):
+            row.append(arr[x*cols+y])
+        reshaped_matrix.append(row)    
     return reshaped_matrix
 
 print(reshape_matrix([[1,2,3,4],[5,6,7,8]], (4, 2)))
+
+
+def calculate_matrix_mean(matrix: list[list[float]], mode: str) -> list[float]:
+	return means
