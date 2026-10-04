@@ -52,4 +52,23 @@ print(reshape_matrix([[1,2,3,4],[5,6,7,8]], (4, 2)))
 
 
 def calculate_matrix_mean(matrix: list[list[float]], mode: str) -> list[float]:
-	return means
+    if mode == "row":
+        dd = []
+        for vector in matrix:
+            sums = 0
+            for num in vector:
+                sums+=num
+            dd.append(sums/len(vector))
+    elif mode == "column":
+        dd = [sum(col)/len(col) for col in zip(*matrix)]
+       
+
+    return dd      
+
+	# return means
+
+asd = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] 
+# qwe = 'row'
+qwe = 'column'
+
+(print(calculate_matrix_mean(asd, qwe)))

@@ -498,14 +498,15 @@ def task_04_4(s):
     for letter in s:
         if letter.lower() not in data:
             asd += letter
-print(task_04_4("This website is for losers LOL!"))
+    return asd
+# print(task_04_4("This website is for losers LOL!"))
 
 
 # --- 04-5 --------------------------------------------------------------------
 # Каждая буква повторяется дважды.
 # task_04_5("String") -> "SSttrriinngg"
 def task_04_5(s):
-    ...
+    return "".join([f"{x}{x}" for x in s])
 # print(task_04_5("String"))
 
 
@@ -513,25 +514,29 @@ def task_04_5(s):
 # Разбей email на кортеж (имя, домен).
 # task_04_6("user@mail.ru") -> ("user", "mail.ru")
 def task_04_6(email):
-    ...
-# print(task_04_6("user@mail.ru"))
+    name, domain = email.split("@")
+    return name, domain
+print(task_04_6("user@mail.ru"))
 
 
 # --- 04-7 --------------------------------------------------------------------
 # Склей список слов в предложение через пробел.
 # task_04_7(["Python", "is", "awesome"]) -> "Python is awesome"
 def task_04_7(words):
+    return " ".join(words)
     ...
-# print(task_04_7(["Python", "is", "awesome"]))
+print(task_04_7(["Python", "is", "awesome"]))
 
 
 # --- 04-8 --------------------------------------------------------------------
 # Убери лишние пробелы: по краям и несколько подряд внутри.
 # task_04_8("  a   b  ") -> "a b"
 def task_04_8(s):
-    ...
-# print(task_04_8("  a   b  "))
+    return " ".join(s.split())
+print(task_04_8("  a   b  "))
 
+asd123 = "asdw2eqwe"
+print(asd123.split("2"))
 
 # --- 04-9 --------------------------------------------------------------------
 # Посчитай количество каждой буквы.
