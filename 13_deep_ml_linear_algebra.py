@@ -71,4 +71,39 @@ asd = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # qwe = 'row'
 qwe = 'column'
 
-(print(calculate_matrix_mean(asd, qwe)))
+print(calculate_matrix_mean(asd, qwe))
+
+matrix1 = [[1, 2], [3, 4]]
+scalar1 = 2
+
+def scalar_multiply(matrix: list[list[int|float]], scalar: int|float) -> list[list[int|float]]:
+    dd = []
+    for vector in matrix:
+        new_vector = []
+        for num in vector:
+            new_num = num * scalar
+            new_vector.append(new_num)
+        dd.append(new_vector)    
+    return dd
+
+# print(scalar_multiply(matrix1, scalar1))  
+
+matrix2 = [[4, 7], [2, 6]]
+def inverse_2x2(matrix: list[list[float]]) -> list[list[float]] | None:
+    one, two = matrix
+    det = one[0]* two[1] - one[1]* two[0]
+    if det == 0:
+        return None
+    else:
+        reverse_matrix = [[two[1]/det, -one[1]/det], [-two[0]/det, one[0]/det]]
+        return reverse_matrix
+
+# print(inverse_2x2(matrix2))
+
+
+def make_diagonal(x):
+    rows1 = len(x)
+    print("🟢🔵🔴 ~ make_diagonal ~ rows1:", rows1)
+    # for x in range(rows1):
+
+print(make_diagonal([1,2,3]))
