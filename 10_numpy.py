@@ -12,7 +12,7 @@ arr = np.array(numbers)
 
 # sales_usd = [120, 350, 280, 410, 195, 305, 270]           .
 
-# arr = np.array(sales_usd)
+# arr = np.array(sales_usd)0
 
 # new_data = arr - 20  
 

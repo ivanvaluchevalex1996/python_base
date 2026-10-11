@@ -535,14 +535,18 @@ def task_04_8(s):
     return " ".join(s.split())
 print(task_04_8("  a   b  "))
 
-asd123 = "asdw2eqwe"
-print(asd123.split(""))
 
 # --- 04-9 --------------------------------------------------------------------
 # Посчитай количество каждой буквы.
 # task_04_9("hello") -> {"h": 1, "e": 1, "l": 2, "o": 1}
 def task_04_9(text):
-    ...
+    dd = {}
+    for x in text:
+        val = dd.get(x,0)
+        dd[x] = val + 1
+        # dd[x] = dd.setdefault(x, 0) + 1
+    return dd
+
 # print(task_04_9("hello"))
 
 
@@ -550,7 +554,8 @@ def task_04_9(text):
 # Сделай инициалы из ФИО (по первой букве каждого слова + точка).
 # task_04_10("Ivanov Petr Sergeevich") -> "I.P.S."
 def task_04_10(full_name):
-    ...
+    dd = [f"{x[0]}." for x in full_name.split(" ")]
+    return "".join(dd)
 # print(task_04_10("Ivanov Petr Sergeevich"))
 
 
@@ -562,7 +567,8 @@ def task_04_10(full_name):
 # Максимум из двух чисел через ТЕРНАРНЫЙ оператор (без max).
 # task_05_1(10, 25) -> 25
 def task_05_1(a, b):
-    ...
+    # return a > b ? a : b
+    return a if a > b else b
 # print(task_05_1(10, 25))
 
 
@@ -570,7 +576,7 @@ def task_05_1(a, b):
 # Оценка по баллам: >=90 "A", >=75 "B", >=60 "C", иначе "F".
 # task_05_2(82) -> "B"
 def task_05_2(score):
-    ...
+    return "A" if score >= 90 else "B" if score >= 75 else "C" if score >= 60 else "F"
 # print(task_05_2(82))
 
 
@@ -578,7 +584,7 @@ def task_05_2(score):
 # Високосный ли год (делится на 4, кроме сотых, но 400-е — да).
 # task_05_3(2024) -> True        task_05_3(1900) -> False
 def task_05_3(year):
-    ...
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 # print(task_05_3(2024))
 # print(task_05_3(1900))
 
@@ -587,9 +593,9 @@ def task_05_3(year):
 # FizzBuzz для одного числа (кратно 15 -> "FizzBuzz", 3 -> "Fizz", 5 -> "Buzz").
 # task_05_4(15) -> "FizzBuzz"        task_05_4(7) -> "7"
 def task_05_4(n):
-    ...
-# print(task_05_4(15))
-# print(task_05_4(7))
+    return "FizzBuzz" if n%15 == 0 else "Fizz" if n% 3 == 0 else "Buzz" if n% 5 == 0 else str(n)
+print(task_05_4(15))
+print(task_05_4(7))
 
 
 # --- 05-5 --------------------------------------------------------------------
