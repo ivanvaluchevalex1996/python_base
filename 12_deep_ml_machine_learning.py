@@ -40,18 +40,18 @@ def linear_regression_gradient_descent(
 
     # Здесь ваш код: реализуйте градиентный спуск
     # for _ in range(iterations):
-        # # 1. Предсказание (3,)
-        # pred = X @ theta
-        # # 2. Ошибки (3,) - так как и pred, и y теперь одномерные, вычитание идет идеально
-        # error = pred - y
-        # # 3. Сырой градиент: сумма (признак × ошибка), ещё без деления на m
-        # в питоне нельзя умножать матрицу напрямую матрицу признаков на ошибку, потому что они разных размеров поэтому нужно траснпонирование
-        # Матричное умножение по определению работает только по правилу «СТРОКА умножается на СТОЛБЕЦ».
-        # raw_gradient = X.T @ error
-        # # 4. Градиент: та же сумма, усреднённая по объектам
-        # gradient = (1 / m) * raw_gradient
-        # # 5. Обновление весов
-        # theta = theta - alpha * gradient
+    # # 1. Предсказание (3,)
+    # pred = X @ theta
+    # # 2. Ошибки (3,) - так как и pred, и y теперь одномерные, вычитание идет идеально
+    # error = pred - y
+    # # 3. Сырой градиент: сумма (признак × ошибка), ещё без деления на m
+    # в питоне нельзя умножать матрицу напрямую матрицу признаков на ошибку, потому что они разных размеров поэтому нужно траснпонирование
+    # Матричное умножение по определению работает только по правилу «СТРОКА умножается на СТОЛБЕЦ».
+    # raw_gradient = X.T @ error
+    # # 4. Градиент: та же сумма, усреднённая по объектам
+    # gradient = (1 / m) * raw_gradient
+    # # 5. Обновление весов
+    # theta = theta - alpha * gradient
 
     for _ in range(iterations):
         pred = X @ theta
@@ -267,10 +267,31 @@ def gini_impurity(y):
     return round((1 - sum(p_squared)), 3)
 
 
-y = [0, 1, 1, 1, 0]
-print(gini_impurity(y))
+# y = [0, 1, 1, 1, 0]
+# print(gini_impurity(y))
 
 
-# demo = {"a": 2, "b": 3}
-# demo.setdefault("c")
-# print(demo)
+def r_squared(y_true, y_pred):
+    # Write your code here
+    y_average = ((y_true).sum()) / len(y_true)
+    ch = np.sum((y_true - y_pred) ** 2)
+    zn = np.sum((y_true - y_average) ** 2)
+    return 1 - (ch / zn)
+
+
+# y_true = np.array([1, 2, 3, 4, 5])
+# y_pred = np.array([1.1, 2.1, 2.9, 4.2, 4.8])
+# print(r_squared(y_true, y_pred))
+
+
+def rmse(y_true, y_pred):
+    ch = np.sum((y_true - y_pred) ** 2)
+    rmse_res = np.sqrt(ch / y_true.size)
+    return round(rmse_res, 3)
+
+
+# y_true = np.array([3, -0.5, 2, 7])
+# y_pred = np.array([2.5, 0.0, 2, 8])
+# y_true2 = np.array([[0.5, 1], [-1, 1], [7, -6]])
+# y_pred2 = np.array([[0, 2], [-1, 2], [8, -5]])
+# print(rmse(y_true2, y_pred2))
