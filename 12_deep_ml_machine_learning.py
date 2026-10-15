@@ -178,6 +178,53 @@ def accuracy_score(y_true, y_pred):
 # print(output)
 
 
+def precision(y_true, y_pred):
+    # Your code here
+    dd = y_true + y_pred
+    TP = (dd == 2).sum()
+    FP = ((y_pred == 1) & (y_true == 0)).sum()
+    if TP == 0:
+        return 0
+    else:
+        return TP / (TP + FP)
+
+
+# y_true = np.array([1, 0, 1, 1, 0, 1])
+# y_pred = np.array([1, 0, 1, 0, 0, 1])
+
+# result = precision(y_true, y_pred)
+# print(result)
+
+
+def recall(y_true, y_pred):
+    # Your code here
+    dd = y_true + y_pred
+    TP = (dd == 2).sum()
+    FN = ((y_pred == 0) & (y_true == 1)).sum()
+    if TP == 0:
+        return 0
+    else:
+        return TP / (TP + FN)
+
+
+# y_true = np.array([1, 0, 1, 1, 0, 1])
+# y_pred = np.array([1, 0, 1, 0, 0, 1])
+
+# print(recall(y_true, y_pred))
+
+
+def f_score(y_true, y_pred, beta):
+    dd = y_true + y_pred
+    TP = (dd == 2).sum()
+    FN = ((y_pred == 0) & (y_true == 1)).sum()
+    FP = ((y_pred == 1) & (y_true == 0)).sum()
+    recall = 0 if TP == 0 else TP / (TP + FN)
+    precision = 0 if TP == 0 else TP / (TP + FP)
+    if precision == 0 and recall == 0:
+        return 0
+    return (1 + beta**2) * recall * precision / (recall + (beta**2 * precision))
+
+
 def ridge_loss(
     X: np.ndarray,
     w: np.ndarray,
@@ -199,13 +246,18 @@ def ridge_loss(
 # loss = ridge_loss(X, w, y_true, alpha)
 # print(loss)
 
+
 def kernel_function(x1, x2):
-	# Your code here
-	return x1@x2
+    # Your code here
+    return x1 @ x2
+
 
 x1 = np.array([1, 2, 3])
 x2 = np.array([4, 5, 6])
 
-result = kernel_function(x1, x2)
-print(result)
+# result = kernel_function(x1, x2)
+# print(result)
 
+def gini_impurity(y):
+    
+	return round(val,3)
