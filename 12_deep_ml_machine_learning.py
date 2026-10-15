@@ -39,7 +39,7 @@ def linear_regression_gradient_descent(
     theta = np.zeros((n, 1))  # Инициализируем веса нулями // [0, 0]
 
     # Здесь ваш код: реализуйте градиентный спуск
-    for _ in range(iterations):
+    # for _ in range(iterations):
         # # 1. Предсказание (3,)
         # pred = X @ theta
         # # 2. Ошибки (3,) - так как и pred, и y теперь одномерные, вычитание идет идеально
@@ -53,10 +53,10 @@ def linear_regression_gradient_descent(
         # # 5. Обновление весов
         # theta = theta - alpha * gradient
 
-        for _ in range(iterations):
-            pred = X @ theta
-            grad = 1 / m * (X.T @ (pred - y))
-            theta = theta - alpha * grad
+    for _ in range(iterations):
+        pred = X @ theta
+        grad = 1 / m * (X.T @ (pred - y))
+        theta = theta - alpha * grad
 
     return theta.flatten()
 
@@ -95,12 +95,12 @@ def shuffle_data(X, y, seed=None):
     # permutation возврщает новый список, в отличии от shuffle
     if seed is not None:
         np.random.seed(seed)
-    idx = np.random.permutation(len(X))  # например [2, 0, 3, 1]
-    # X_shuffled = np.array([X[el] for el in idx])
-    # y_shuffled = np.array([y[el] for el in idx])
+    indices = np.random.permutation(len(X))  # например [2, 0, 3, 1]
+    # X_shuffled = np.array([X[el] for el in indices])
+    # y_shuffled = np.array([y[el] for el in indices])
     # return X_shuffled, y_shuffled
     #   или кратко чероз возможность NumPy
-    return X[idx], y[idx]
+    return X[indices], y[indices]
 
 
 # X = np.array([[1, 2], [3, 4], [5, 6], [7, 8]])
@@ -110,15 +110,15 @@ def shuffle_data(X, y, seed=None):
 
 def batch_iterator(X, y=None, batch_size=64):
     # Your code here
-    dd = []
+    batches = []
     for i in range(0, len(X), batch_size):
-        new_list_x = X[i : i + batch_size]
+        X_batch = X[i : i + batch_size]
         if y is not None:
-            new_list_y = y[i : i + batch_size]
-            dd.append([new_list_x, new_list_y])
+            y_batch = y[i : i + batch_size]
+            batches.append([X_batch, y_batch])
         else:
-            dd.append(new_list_x)
-    return dd
+            batches.append(X_batch)
+    return batches
 
 
 # X = np.array(
@@ -144,18 +144,18 @@ def batch_iterator(X, y=None, batch_size=64):
 
 def to_categorical(x, n_col: int | None = None):
     # Your code here
-    max_num_label = np.max(x)
+    max_label = np.max(x)
     if n_col is None:
-        col = max_num_label + 1
+        n_columns = max_label + 1
     else:
-        col = n_col
-    zeros_list = np.zeros((len(x), col))
-    for i in range(len(zeros_list)):
+        n_columns = n_col
+    one_hot = np.zeros((len(x), n_columns))
+    for i in range(len(one_hot)):
         # по питоновски
-        # zeros_list[i][x[i]] = 1
+        # one_hot[i][x[i]] = 1
         # по нампаевски
-        zeros_list[i, x[i]] = 1
-    return zeros_list
+        one_hot[i, x[i]] = 1
+    return one_hot
 
 
 x = np.array([0, 1, 2, 1, 0])
@@ -166,10 +166,10 @@ x = np.array([0, 1, 2, 1, 0])
 
 def accuracy_score(y_true, y_pred):
     # Your code here
-    dd = y_true == y_pred
-    sums = np.sum(dd)
-    acuracy = sums / len(y_true)
-    return acuracy
+    correct_mask = y_true == y_pred
+    n_correct = np.sum(correct_mask)
+    accuracy = n_correct / len(y_true)
+    return accuracy
 
 
 # y_true = np.array([1, 0, 1, 1, 0, 1])
@@ -180,8 +180,8 @@ def accuracy_score(y_true, y_pred):
 
 def precision(y_true, y_pred):
     # Your code here
-    dd = y_true + y_pred
-    TP = (dd == 2).sum()
+    labels_sum = y_true + y_pred
+    TP = (labels_sum == 2).sum()
     FP = ((y_pred == 1) & (y_true == 0)).sum()
     if TP == 0:
         return 0
@@ -198,8 +198,8 @@ def precision(y_true, y_pred):
 
 def recall(y_true, y_pred):
     # Your code here
-    dd = y_true + y_pred
-    TP = (dd == 2).sum()
+    labels_sum = y_true + y_pred
+    TP = (labels_sum == 2).sum()
     FN = ((y_pred == 0) & (y_true == 1)).sum()
     if TP == 0:
         return 0
@@ -214,8 +214,8 @@ def recall(y_true, y_pred):
 
 
 def f_score(y_true, y_pred, beta):
-    dd = y_true + y_pred
-    TP = (dd == 2).sum()
+    labels_sum = y_true + y_pred
+    TP = (labels_sum == 2).sum()
     FN = ((y_pred == 0) & (y_true == 1)).sum()
     FP = ((y_pred == 1) & (y_true == 0)).sum()
     recall = 0 if TP == 0 else TP / (TP + FN)
@@ -258,6 +258,19 @@ x2 = np.array([4, 5, 6])
 # result = kernel_function(x1, x2)
 # print(result)
 
+
 def gini_impurity(y):
-    
-	return round(val,3)
+    counts = {}
+    for label in y:
+        counts[label] = counts.setdefault(label, 0) + 1
+    p_squared = [(count / len(y)) ** 2 for _, count in counts.items()]
+    return round((1 - sum(p_squared)), 3)
+
+
+y = [0, 1, 1, 1, 0]
+print(gini_impurity(y))
+
+
+# demo = {"a": 2, "b": 3}
+# demo.setdefault("c")
+# print(demo)
