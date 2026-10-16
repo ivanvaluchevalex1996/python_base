@@ -146,10 +146,46 @@ def calculate_dot_product(vec1, vec2):
     # Your code here
     count = 0
     for i in range(len(vec1)):
-        count+= vec1[i] * vec2[i]
+        count += vec1[i] * vec2[i]
     return count
 
 
 # vec1 = np.array([1, 2, 3])
 # vec2 = np.array([4, 5, 6])
 # output = calculate_dot_product(vec1, vec2)
+# print("🟢🔵🔴 ~ output:", output)
+
+
+def compressed_row_sparse_matrix(dense_matrix):
+    values = []
+    col_indices = []
+    row_ptr = [0]
+    for vector in dense_matrix:
+        for i, num in enumerate(vector):
+            if num != 0:
+                values.append(num)
+                col_indices.append(i)
+        row_ptr.append(len(values))
+
+    return (values, col_indices, row_ptr)
+
+
+dense_matrix = [[1, 0, 0, 0], [0, 2, 0, 0], [3, 0, 4, 0], [1, 0, 0, 5]]
+
+# vals, col_idx, row_ptr = compressed_row_sparse_matrix(dense_matrix)
+# print("Values array:", vals)
+# print("Column indices array:", col_idx)
+# print("Row pointer array:", row_ptr)
+
+def orthogonal_projection(v, L):
+    v = np.array(v, dtype=float)
+    L = np.array(L, dtype=float)
+    # proj_L(v) = ((v · L) / (L · L)) * L
+    scalar = (v @ L) / (L @ L)
+    projection = scalar * L
+    return [round(x, 3) for x in projection]
+
+
+# v = [3, 4]
+# L = [1, 0]
+# print(orthogonal_projection(v, L))  # [3.0, 0.0]
