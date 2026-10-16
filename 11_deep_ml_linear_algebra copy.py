@@ -140,3 +140,16 @@ def make_diagonal(x):
 # x = [1, 2, 3]
 # output = make_diagonal(x)
 # print("🟢🔵🔴 ~ output:", output)
+
+
+def calculate_dot_product(vec1, vec2):
+    # Your code here
+    count = 0
+    for i in range(len(vec1)):
+        count+= vec1[i] * vec2[i]
+    return count
+
+
+# vec1 = np.array([1, 2, 3])
+# vec2 = np.array([4, 5, 6])
+# output = calculate_dot_product(vec1, vec2)
