@@ -245,6 +245,27 @@ def phi_transform(data: list[float], degree: int) -> list[list[float]]:
     return result
 
 
-data = [1.0, 2.0]
-degree = 2
-print(phi_transform(data, degree))
+# data = [1.0, 2.0]
+# degree = 2
+# print(phi_transform(data, degree))
+
+def cross_product(a, b):
+    ax, ay, az = a
+    bx, by, bz = b
+    return [
+        ay * bz - az * by,
+        az * bx - ax * bz,
+        ax * by - ay * bx,
+    ]
+
+
+# print(cross_product([1, 0, 0], [0, 1, 0]))  # [0, 0, 1]
+
+def vector_sum(a: list[int|float], b: list[int|float]) -> list[int|float]:
+    if len(a) != len(b):
+        return -1
+    new_list = [x + y for x,y in zip(a,b)]    
+    return new_list
+a = [1, 3]
+b = [4, 5]
+print(vector_sum(a,b))
