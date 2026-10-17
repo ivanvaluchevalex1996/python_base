@@ -144,10 +144,10 @@ def make_diagonal(x):
 
 def calculate_dot_product(vec1, vec2):
     # Your code here
-    count = 0
+    dot = 0
     for i in range(len(vec1)):
-        count += vec1[i] * vec2[i]
-    return count
+        dot += vec1[i] * vec2[i]
+    return dot
 
 
 # vec1 = np.array([1, 2, 3])
@@ -160,22 +160,23 @@ def compressed_row_sparse_matrix(dense_matrix):
     values = []
     col_indices = []
     row_ptr = [0]
-    for vector in dense_matrix:
-        for i, num in enumerate(vector):
+    for row in dense_matrix:
+        for col_idx, num in enumerate(row):
             if num != 0:
                 values.append(num)
-                col_indices.append(i)
+                col_indices.append(col_idx)
         row_ptr.append(len(values))
 
     return (values, col_indices, row_ptr)
 
 
-dense_matrix = [[1, 0, 0, 0], [0, 2, 0, 0], [3, 0, 4, 0], [1, 0, 0, 5]]
+# dense_matrix = [[1, 0, 0, 0], [0, 2, 0, 0], [3, 0, 4, 0], [1, 0, 0, 5]]
 
 # vals, col_idx, row_ptr = compressed_row_sparse_matrix(dense_matrix)
 # print("Values array:", vals)
 # print("Column indices array:", col_idx)
 # print("Row pointer array:", row_ptr)
+
 
 def orthogonal_projection(v, L):
     v = np.array(v, dtype=float)
@@ -189,3 +190,61 @@ def orthogonal_projection(v, L):
 # v = [3, 4]
 # L = [1, 0]
 # print(orthogonal_projection(v, L))  # [3.0, 0.0]
+
+
+def compressed_col_sparse_matrix(dense_matrix):
+    values = []
+    row_indices = []
+    col_ptr = [0]
+    n_cols = len(dense_matrix[0])
+    n_rows = len(dense_matrix)
+
+    for col in range(n_cols):
+        for row_idx in range(n_rows):
+            value = dense_matrix[row_idx][col]
+            if value != 0:
+                values.append(value)
+                row_indices.append(row_idx)
+        col_ptr.append(len(values))
+    return (values, row_indices, col_ptr)
+
+
+# dense_matrix = [[0, 0, 3, 0], [1, 0, 0, 4], [0, 2, 0, 0]]
+
+# values, row_indices, col_ptr = compressed_col_sparse_matrix(dense_matrix)
+
+
+def cosine_similarity(v1, v2):
+    dot = v1 @ v2
+    norm_v1 = np.sqrt(v1 @ v1)
+    norm_v2 = np.sqrt(v2 @ v2)
+
+    # Implement your code here
+    return dot / (norm_v1 * norm_v2)
+
+
+# v1 = np.array([1, 2, 3])
+# v2 = np.array([2, 4, 6])
+# print(round(cosine_similarity(v1, v2), 3))
+
+
+def transform_basis(B: list[list[int]], C: list[list[int]]) -> list[list[float]]:
+    P = np.linalg.inv(C) @ B
+    return P
+
+
+def phi_transform(data: list[float], degree: int) -> list[list[float]]:
+    # Your code here
+
+    result = []
+    for value in data:
+        powers = []
+        for power in range(degree + 1):
+            powers.append(value**power)
+        result.append(powers)
+    return result
+
+
+data = [1.0, 2.0]
+degree = 2
+print(phi_transform(data, degree))
