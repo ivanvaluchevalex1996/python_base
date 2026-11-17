@@ -30,6 +30,7 @@ def first_non_repeated(s):
             return x
     return None
 
+
 # print(first_non_repeated("abacabad"))
 
 
@@ -41,6 +42,7 @@ def disemvowel(string_):
             dd += x
     return dd
 
+
 # print(disemvowel("This website is for losers LOL!"))
 
 
@@ -48,11 +50,13 @@ def disemvowel(string_):
 # БЛОК 02. СПИСКИ, СРЕЗЫ, RANGE, МНОЖЕСТВА
 # =============================================================================
 
+
 # --- 02-1 --------------------------------------------------------------------
 # Верни кортеж (первый, последний, средний) элемент списка.
 # task_02_1([10, 20, 30, 40, 50]) -> (10, 50, 30)
 def task_02_1(lst):
     return (lst[0], lst[:-1], lst[len(lst) // 2])
+
 
 # print(task_02_1([10, 20, 30, 40, 50]))
 
@@ -63,6 +67,7 @@ def task_02_1(lst):
 def task_02_2(lst):
     return lst[::-1]
 
+
 # print(task_02_2([1, 2, 3]))
 
 
@@ -71,6 +76,7 @@ def task_02_2(lst):
 # task_02_3([1, 2, 3, 4, 5, 6]) -> [1, 3, 5]
 def task_02_3(lst):
     return reversed(lst[:])
+
 
 # print(list(task_02_3([1, 2, 3, 4, 5, 6])))
 
@@ -81,6 +87,7 @@ def task_02_3(lst):
 def task_02_4(a, b):
     return [x for x in range(a, b)]
 
+
 # print(task_02_4(1, 5))
 
 
@@ -90,6 +97,7 @@ def task_02_4(a, b):
 def task_02_5(n):
     return range(0, n, 2)
 
+
 # print(list(task_02_5(10)))
 
 
@@ -98,6 +106,7 @@ def task_02_5(n):
 # task_02_6(1, 3) -> 6
 def task_02_6(a, b):
     return sum(range(a, b))
+
 
 # print(task_02_6(1, 3))
 
@@ -111,6 +120,7 @@ def task_02_7(lst, i):
     lst.pop(i)
     return lst
 
+
 # print(task_02_7([1, 2, 3, 4, 5], 1))
 
 
@@ -119,6 +129,7 @@ def task_02_7(lst, i):
 # task_02_8([1, 5, 3], [2, 8]) -> [1, 2, 3, 5, 8]
 def task_02_8(list_1, list_2):
     return sorted(list_1 + list_2)
+
 
 # print(task_02_8([1, 5, 3], [2, 8]))
 
@@ -129,6 +140,7 @@ def task_02_8(list_1, list_2):
 def task_02_9(words):
     return sorted(words, key=lambda w: (len(w), w))
 
+
 # print(task_02_9(["bbb", "aa", "a", "cc"]))
 
 
@@ -137,6 +149,7 @@ def task_02_9(words):
 # task_02_10([3, 1, 3, 2, 1]) -> [3, 1, 2]
 def task_02_10(lst):
     return list(dict.fromkeys(lst))
+
 
 # print(task_02_10([3, 1, 3, 2, 1]))
 
@@ -148,6 +161,7 @@ def task_02_11(nums):
     new_data = sorted(nums)[1:-1]
     sum_d = sum(new_data) / len(new_data)
     return sum_d
+
 
 # print(task_02_11([1, 2, 3, 4, 100]))
 
@@ -164,6 +178,7 @@ def task_02_12(a, b):
         "sym": a ^ b,
     }
 
+
 # print(task_02_12({1, 2, 3}, {3, 4}))
 
 
@@ -176,6 +191,7 @@ def task_02_13(matrix):
         dd.extend(x)
     return dd
 
+
 # print(task_02_13([[1, 2], [3, 4]]))
 
 
@@ -186,6 +202,7 @@ def task_02_14(nums):
     half = len(nums) // 2
     return sum(nums[:half]) == sum(nums[half:])
 
+
 # print(task_02_14([1, 2, 4, 3]))
 
 
@@ -193,11 +210,13 @@ def task_02_14(nums):
 # БЛОК 03. СЛОВАРИ: zip, comprehension, setdefault
 # =============================================================================
 
+
 # --- 03-1 --------------------------------------------------------------------
 # Поменяй ключи и значения местами (инверсия).
 # task_03_1({"a": 1, "b": 2}) -> {1: "a", 2: "b"}
 def task_03_1(d):
     return {v: k for k, v in d.items()}
+
 
 # print(task_03_1({"a": 1, "b": 2}))
 
@@ -208,6 +227,7 @@ def task_03_1(d):
 def task_03_2(keys, values):
     return {k: v for k, v in zip(keys, values)}
 
+
 # print(task_03_2(["name", "age"], ["Anna", 25]))
 
 
@@ -216,6 +236,7 @@ def task_03_2(keys, values):
 # task_03_3([("a", 1), ("b", 2)]) -> (("a", "b"), (1, 2))
 def task_03_3(pairs):
     return tuple(zip(*pairs))
+
 
 # print(task_03_3([("a", 1), ("b", 2)]))
 
@@ -230,6 +251,7 @@ def task_03_4(pairs):
         dd[k] = value + v
     return dd
 
+
 # print(task_03_4([("a", 1), ("b", 2), ("a", 3)]))
 
 
@@ -241,6 +263,8 @@ def task_03_5(text):
     for w in text:
         dd[w] = dd.setdefault(w, 0) + 1
     return dd
+
+
 # print(task_03_5("banana"))
 
 
@@ -250,9 +274,11 @@ def task_03_5(text):
 def task_03_6(words):
     dd = {}
     for w in words:
-        dd.setdefault(w[0],[]).append(w)
+        dd.setdefault(w[0], []).append(w)
     return dd
     ...
+
+
 # print(task_03_6(["apple", "apricot", "banana"]))
 
 
@@ -260,7 +286,9 @@ def task_03_6(words):
 # Оставь только пары со значением >= limit (dict comprehension).
 # task_03_7({"math": 5, "eng": 3, "pe": 2}, 4) -> {"math": 5}
 def task_03_7(d, limit):
-    return {k:v for k,v in d.items() if v >=limit}
+    return {k: v for k, v in d.items() if v >= limit}
+
+
 # print(task_03_7({"math": 5, "eng": 3, "pe": 2}, 4))
 
 
@@ -268,8 +296,10 @@ def task_03_7(d, limit):
 # Словарь {слово: длина слова}.
 # task_03_8(["cat", "python"]) -> {"cat": 3, "python": 6}
 def task_03_8(words):
-    return {x:len(x) for x  in words}
+    return {x: len(x) for x in words}
     ...
+
+
 # print(task_03_8(["cat", "python"]))
 
 
@@ -279,7 +309,7 @@ def task_03_8(words):
 #   -> {"apple": {"stock": 10}}
 def task_03_9(inventory):
     dd = {}
-    for k,v in inventory.items():
+    for k, v in inventory.items():
         if v["stock"] > 0:
             dd[k] = v
     return dd
@@ -288,13 +318,12 @@ def task_03_9(inventory):
 # print(task_03_9({"apple": {"stock": 10}, "banana": {"stock": 0}}))
 
 
-
 # --- 03-10 -------------------------------------------------------------------
 # Средний балл по каждому студенту.
 # test = {
 #       "s1": {
-                # "name": "Anna", 
-                # "grades": {"math": 5, "eng": 4}}
+# "name": "Anna",
+# "grades": {"math": 5, "eng": 4}}
 # }
 # task_03_10(test)
 #   -> {"s1": 4.5}
@@ -304,6 +333,7 @@ def task_03_10(students):
         grades = v["grades"].values()
         dd[k] = sum(grades) / len(grades)
     return dd
+
 
 # print(task_03_10({"s1": {"name": "Anna", "grades": {"math": 5, "eng": 4}}}))
 
@@ -325,7 +355,7 @@ def task_03_11(shop_a, shop_b):
             dd[x] = shop_b[x]
     return dd
 
-        
+
 # print(task_03_11({"apple": 50}, {"apple": 40, "mango": 120}))
 
 
@@ -336,8 +366,9 @@ def task_03_12(d):
     # dd = ""
     # for k,v in sorted(d.items()):
     #     dd+= f"{k}={v}&"
-    # return dd[-1]    
+    # return dd[-1]
     return "&".join(((f"{k}={v}" for k, v in sorted(d.items()))))
+
 
 # print(task_03_12({"lesson": 2, "course": "python"}))
 
@@ -351,6 +382,7 @@ def task_03_12(d):
 # for x in asd:
 #     print(x)
 
+
 def task_03_13(transactions):
     dd = {}
     # for x in transactions:
@@ -361,8 +393,9 @@ def task_03_13(transactions):
     for x in transactions:
         ac = x["account"]
         am = x["amount"]
-        dd.setdefault(ac,[]).append(am)
+        dd.setdefault(ac, []).append(am)
     return dd
+
 
 # print(task_03_13([{"account": "A", "amount": 100}, {"account": "A", "amount": 50}]))
 
@@ -375,21 +408,27 @@ def task_03_14(codes, names, regions):
     keys = ["code", "name", "region"]
     return [dict(zip(keys, rows)) for rows in zip(codes, names, regions)]
 
+
 # print(task_03_14(["MSK", "SPB"], ["Moscow", "SPb"], ["Central", "NW"]))
+
 
 # task_1(["MSK", "SPB"], ["Moscow", "Spb"])
 #   -> [("MSK", "Moscow"), ("SPB", "Spb")]
 def task_1(codes, names):
     return list(zip(codes, names))
 
+
 # print(task_1(["MSK", "SPB"], ["Moscow", "Spb"]))
+
 
 # task_2(["MSK", "SPB"], ["Moscow", "Spb"])
 #   -> {"MSK": "Moscow", "SPB": "Spb"}
 def task_2(codes, names):
     return dict(zip(codes, names))
 
+
 # print(task_2(["MSK", "SPB"], ["Moscow", "Spb"]))
+
 
 # task_3(["MSK", "SPB"], ["Moscow", "Spb"])
 #   -> [{"code": "MSK", "name": "Moscow"},
@@ -398,14 +437,21 @@ def task_3(codes, names):
     keys = ["code", "name"]
     return [dict(zip(keys, x)) for x in zip(codes, names)]
 
+
 # print(task_3(["MSK", "SPB"], ["Moscow", "Spb"]))
+
 
 # task_4(["MSK"], ["Moscow"], ["Central"])
 #   -> [{"code": "MSK", "name": "Moscow", "region": "Central"}]
 def task_4(codes, names, regions):
-    return [dict(zip(["code", "name", "region"], rows)) for rows in zip(codes, names, regions)]
+    return [
+        dict(zip(["code", "name", "region"], rows))
+        for rows in zip(codes, names, regions)
+    ]
+
 
 # print(task_4(["MSK"], ["Moscow"], ["Central"]))
+
 
 # task_5([1, 2, 3], [10, 20, 30])
 #   -> [11, 22, 33]
@@ -414,39 +460,48 @@ def task_5(a, b):
     # for n1,n2 in zip(a,b):
     #     dd.append(n1+n2)
     # return dd
-    return [z+y for z,y in zip(a,b)]
+    return [z + y for z, y in zip(a, b)]
 
 
 # print(task_5([1, 2, 3], [10, 20, 30]))
 
+
 # task_6(["a", "b", "c"])
 #   -> [(1, "a"), (2, "b"), (3, "c")]
 def task_6(items):
-    return list(zip(range(1,len(items)+ 1), items))
+    return list(zip(range(1, len(items) + 1), items))
+
 
 # print(task_6(["a", "b", "c"]))
+
 
 # task_8([1, 2, 3, 4], [1, 9, 3, 8])
 #   -> [(2, 9), (4, 8)]
 def task_8(a, b):
-    return [(n1,n2) for n1, n2 in zip(a,b) if n1!=n2]
+    return [(n1, n2) for n1, n2 in zip(a, b) if n1 != n2]
+
 
 # print(task_8([1, 2, 3, 4], [1, 9, 3, 8]))
+
 
 # task_9([1, 2, 3], [1, 2, 3])  -> True
 # task_9([1, 2, 3], [1, 9, 3])  -> False
 def task_9(a, b):
     return all(n1 == n2 for n1, n2 in zip(a, b))
- 
+
+
 # print(task_9([1, 2, 3], [1, 2, 3]))
 # print(task_9([1, 2, 3], [1, 9, 3]))
+
 
 # task_10(["a", "", "c"], [1, 2, 3])
 #   -> {"a": 1, "c": 3}
 def task_10(keys, values):
-    return {w:n for  w, n in zip(keys,values) if w !=""}
+    return {w: n for w, n in zip(keys, values) if w != ""}
+
 
 # print(task_10(["a", "", "c"], [1, 2, 3]))
+
 
 # task_11([[1, 2, 3],
 #          [4, 5, 6]])
@@ -454,13 +509,16 @@ def task_10(keys, values):
 def task_11(matrix):
     return list(zip(*matrix))
 
+
 # print(task_11([[1, 2, 3], [4, 5, 6]]))
+
 
 # task_12(["MSK"], ["Moscow"], ["Central"])
 #   -> [{"f1": "MSK", "f2": "Moscow", "f3": "Central"}]
 def task_12(*columns):
     keys = [f"f{i}" for i in range(1, len(columns) + 1)]
     return [dict(zip(keys, row)) for row in zip(*columns)]
+
 
 # print(task_12(["MSK"], ["Moscow"], ["Central"]))
 
@@ -469,11 +527,14 @@ def task_12(*columns):
 # БЛОК 04. СТРОКИ
 # =============================================================================
 
+
 # --- 04-1 --------------------------------------------------------------------
 # Верни кортеж (длина, первый символ, последний символ).
 # task_04_1("Python") -> (6, "P", "n")
 def task_04_1(s):
-    return (len(s), s[0], s[-1]) 
+    return (len(s), s[0], s[-1])
+
+
 # print(task_04_1("Python"))
 
 
@@ -482,23 +543,24 @@ def task_04_1(s):
 # task_04_2("Level") -> True        task_04_2("hello") -> False
 def task_04_2(s):
     return s.lower() == s[::-1].lower()
-    
+
+
 # print(task_04_2("Level"))
 # print(task_04_2("hello"))
-
-
 
 
 # --- 04-4 --------------------------------------------------------------------
 # Убери все гласные (a, e, i, o, u — любого регистра).
 # task_04_4("This website is for losers LOL!") -> "Ths wbst s fr lsrs LL!"
 def task_04_4(s):
-    data = ['a', 'e', 'i', 'o', 'u']
+    data = ["a", "e", "i", "o", "u"]
     asd = ""
     for letter in s:
         if letter.lower() not in data:
             asd += letter
     return asd
+
+
 # print(task_04_4("This website is for losers LOL!"))
 
 
@@ -507,6 +569,8 @@ def task_04_4(s):
 # task_04_5("String") -> "SSttrriinngg"
 def task_04_5(s):
     return "".join([f"{x}{x}" for x in s])
+
+
 # print(task_04_5("String"))
 
 
@@ -516,6 +580,8 @@ def task_04_5(s):
 def task_04_6(email):
     name, domain = email.split("@")
     return name, domain
+
+
 print(task_04_6("user@mail.ru"))
 
 
@@ -525,6 +591,8 @@ print(task_04_6("user@mail.ru"))
 def task_04_7(words):
     return " ".join(words)
     ...
+
+
 print(task_04_7(["Python", "is", "awesome"]))
 
 
@@ -533,6 +601,8 @@ print(task_04_7(["Python", "is", "awesome"]))
 # task_04_8("  a   b  ") -> "a b"
 def task_04_8(s):
     return " ".join(s.split())
+
+
 print(task_04_8("  a   b  "))
 
 
@@ -542,10 +612,11 @@ print(task_04_8("  a   b  "))
 def task_04_9(text):
     dd = {}
     for x in text:
-        val = dd.get(x,0)
+        val = dd.get(x, 0)
         dd[x] = val + 1
         # dd[x] = dd.setdefault(x, 0) + 1
     return dd
+
 
 # print(task_04_9("hello"))
 
@@ -556,6 +627,8 @@ def task_04_9(text):
 def task_04_10(full_name):
     dd = [f"{x[0]}." for x in full_name.split(" ")]
     return "".join(dd)
+
+
 # print(task_04_10("Ivanov Petr Sergeevich"))
 
 
@@ -563,12 +636,15 @@ def task_04_10(full_name):
 # БЛОК 05. УСЛОВИЯ IF / ELIF / ELSE
 # =============================================================================
 
+
 # --- 05-1 --------------------------------------------------------------------
 # Максимум из двух чисел через ТЕРНАРНЫЙ оператор (без max).
 # task_05_1(10, 25) -> 25
 def task_05_1(a, b):
     # return a > b ? a : b
     return a if a > b else b
+
+
 # print(task_05_1(10, 25))
 
 
@@ -577,6 +653,8 @@ def task_05_1(a, b):
 # task_05_2(82) -> "B"
 def task_05_2(score):
     return "A" if score >= 90 else "B" if score >= 75 else "C" if score >= 60 else "F"
+
+
 # print(task_05_2(82))
 
 
@@ -585,6 +663,8 @@ def task_05_2(score):
 # task_05_3(2024) -> True        task_05_3(1900) -> False
 def task_05_3(year):
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+
 # print(task_05_3(2024))
 # print(task_05_3(1900))
 
@@ -593,54 +673,32 @@ def task_05_3(year):
 # FizzBuzz для одного числа (кратно 15 -> "FizzBuzz", 3 -> "Fizz", 5 -> "Buzz").
 # task_05_4(15) -> "FizzBuzz"        task_05_4(7) -> "7"
 def task_05_4(n):
-    return "FizzBuzz" if n%15 == 0 else "Fizz" if n% 3 == 0 else "Buzz" if n% 5 == 0 else str(n)
-print(task_05_4(15))
-print(task_05_4(7))
+    return (
+        "FizzBuzz"
+        if n % 15 == 0
+        else "Fizz" if n % 3 == 0 else "Buzz" if n % 5 == 0 else str(n)
+    )
 
 
-# --- 05-5 --------------------------------------------------------------------
-# Скидка по возрасту: <12 или >=65 -> 0.5 ; 12..17 -> 0.2 ; иначе 0.
-# task_05_5(70) -> 0.5        task_05_5(30) -> 0
-def task_05_5(age):
-    ...
-# print(task_05_5(70))
-
-
-# --- 05-6 --------------------------------------------------------------------
-# Пароль: "Слишком короткий" (len < 6) / "Только буквы и цифры" (не alnum) / "OK".
-# task_05_6("abc123") -> "OK"        task_05_6("abc") -> "Слишком короткий"
-def task_05_6(password):
-    ...
-# print(task_05_6("abc123"))
-
-
-# --- 05-7 --------------------------------------------------------------------
-# Знак числа: "+", "-" или "0".
-# task_05_7(-3) -> "-"        task_05_7(0) -> "0"
-def task_05_7(n):
-    ...
-# print(task_05_7(-3))
-# print(task_05_7(0))
-
-
-# --- 05-8 --------------------------------------------------------------------
-# Категория температуры: >30 "жарко", >20 "тепло", >10 "прохладно", иначе "холодно".
-# task_05_8(22) -> "тепло"
-def task_05_8(temperature):
-    ...
-# print(task_05_8(22))
-# print(task_05_8(5))
+# print(task_05_4(15))
+# print(task_05_4(7))
 
 
 # =============================================================================
 # БЛОК 06. ЦИКЛЫ И COMPREHENSION
 # =============================================================================
 
+
 # --- 06-1 --------------------------------------------------------------------
 # Сумма чисел от 1 до n включительно ЦИКЛОМ (без sum).
 # task_06_1(5) -> 15
 def task_06_1(n):
-    ...
+    c = 0
+    for i in range(1, n + 1):
+        c += i
+    return c
+
+
 # print(task_06_1(5))
 
 
@@ -648,74 +706,77 @@ def task_06_1(n):
 # Максимум в списке циклом (без max). Пустой список — None.
 # task_06_2([3, 7, 2, 9, 1]) -> 9
 def task_06_2(nums):
+    if len(nums) == 0:
+        return None
+    m_num = nums[0]
+    for n in nums:
+        if n > m_num:
+            m_num = n
+    return m_num
     ...
+
+
 # print(task_06_2([3, 7, 2, 9, 1]))
 # print(task_06_2([]))
-
-
-# --- 06-3 --------------------------------------------------------------------
-# Сколько чётных чисел в списке (цикл + счётчик).
-# task_06_3([1, 2, 3, 4, 5, 6]) -> 3
-def task_06_3(nums):
-    ...
-# print(task_06_3([1, 2, 3, 4, 5, 6]))
-
-
-# --- 06-4 --------------------------------------------------------------------
-# FizzBuzz от 1 до n списком (цикл + append, элементы — строки).
-# task_06_4(5) -> ["1", "2", "Fizz", "4", "Buzz"]
-def task_06_4(n):
-    ...
-# print(task_06_4(5))
 
 
 # --- 06-5 --------------------------------------------------------------------
 # Таблица умножения size x size (ВЛОЖЕННЫЙ цикл).
 # task_06_5(2) -> [[1, 2], [2, 4]]
 def task_06_5(size):
-    ...
-# print(task_06_5(2))
+    res = []
+    for i in range(1, size + 1):
+        row = []
+        for j in range(1, size + 1):
+            row.append(i * j)
+        res.append(row)
+    return res
+
+
+# print(task_06_5(3))
 
 
 # --- 06-6 --------------------------------------------------------------------
 # Сумма цифр числа (через str + int).
 # task_06_6(12345) -> 15
 def task_06_6(number):
-    ...
+    s = 0
+    for n in str(number):
+        s += int(n)
+    return s
+
+
 # print(task_06_6(12345))
 
 
 # --- 06-7 --------------------------------------------------------------------
 # Первое число больше 10 (через break). Если такого нет — None.
-# task_06_7([3, 8, 12, 5, 20]) -> 12
+# task_06_7([3, 8, 12, 5, 20]) -> 12        task_06_7([1, 2]) -> None
 def task_06_7(nums):
-    ...
+    for n in nums:
+        if n > 10:
+            return n
+    return None
+
+
 # print(task_06_7([3, 8, 12, 5, 20]))
 # print(task_06_7([1, 2]))
-
-
-# --- 06-8 --------------------------------------------------------------------
-# Простое ли число (num <= 1 -> False). Реши ЦИКЛОМ.
-# task_06_8(7) -> True        task_06_8(8) -> False
-def task_06_8(num):
-    ...
-# print(task_06_8(7))
-# print(task_06_8(8))
 
 
 # --- 06-9 --------------------------------------------------------------------
 # Квадраты чётных чисел от 1 до n (list comprehension).
 # task_06_9(6) -> [4, 16, 36]
 def task_06_9(n):
-    ...
-# print(task_06_9(6))
+    return [a**2 for a in range(1, n + 1) if a % 2 == 0]
+print(task_06_9(6))
 
 
 # --- 06-10 -------------------------------------------------------------------
 # Метки "even" / "odd" для каждого числа (тернарник внутри comprehension).
 # task_06_10([1, 2, 3]) -> ["odd", "even", "odd"]
-def task_06_10(nums):
-    ...
+def task_06_10(nums): 
+
+
 # print(task_06_10([1, 2, 3]))
 
 
@@ -723,34 +784,40 @@ def task_06_10(nums):
 # БЛОК 07. LAMBDA И ФУНКЦИИ
 # =============================================================================
 
+
 # --- 07-1 --------------------------------------------------------------------
 # Создай lambda square и верни square(n).
-def task_07_1(n):
-    ...
+# task_07_1(6) -> 36
+def task_07_1(n): ...
+
+
 # print(task_07_1(6))
 
 
 # --- 07-2 --------------------------------------------------------------------
 # filter + lambda: только положительные числа.
 # task_07_2([1, -2, 3, -4, 5]) -> [1, 3, 5]
-def task_07_2(nums):
-    ...
+def task_07_2(nums): ...
+
+
 # print(task_07_2([1, -2, 3, -4, 5]))
 
 
 # --- 07-3 --------------------------------------------------------------------
 # map + lambda: кубы чисел.
 # task_07_3([1, 2, 3]) -> [1, 8, 27]
-def task_07_3(nums):
-    ...
+def task_07_3(nums): ...
+
+
 # print(task_07_3([1, 2, 3]))
 
 
 # --- 07-4 --------------------------------------------------------------------
 # sorted + lambda: отсортируй слова по длине.
 # task_07_4(["python", "js", "go", "rust"]) -> ["js", "go", "rust", "python"]
-def task_07_4(words):
-    ...
+def task_07_4(words): ...
+
+
 # print(task_07_4(["python", "js", "go", "rust"]))
 
 
@@ -758,8 +825,9 @@ def task_07_4(words):
 # sorted + lambda: по второму элементу кортежа по УБЫВАНИЮ.
 # task_07_5([("Anna", 25), ("Bob", 30), ("Kate", 20)])
 #   -> [("Bob", 30), ("Anna", 25), ("Kate", 20)]
-def task_07_5(pairs):
-    ...
+def task_07_5(pairs): ...
+
+
 # print(task_07_5([("Anna", 25), ("Bob", 30), ("Kate", 20)]))
 
 
@@ -767,24 +835,33 @@ def task_07_5(pairs):
 # sorted: сначала по возрасту (возр.), при равенстве — по имени (алфавит).
 # students = [("Alice", 25), ("Bob", 22), ("Diana", 22)]
 # task_07_6(students) -> [("Bob", 22), ("Diana", 22), ("Alice", 25)]
-def task_07_6(students):
-    ...
+def task_07_6(students): ...
+
+
 # print(task_07_6([("Alice", 25), ("Bob", 22), ("Diana", 22)]))
 
 
 # --- 07-7 --------------------------------------------------------------------
 # sorted товаров: цена по УБЫВАНИЮ, при равной цене — имя по возрастанию.
-# products = [{"name": "Laptop", "price": 1000}, {"name": "Monitor", "price": 300}]
-def task_07_7(products):
-    ...
-# print(task_07_7([{"name": "Laptop", "price": 1000}, {"name": "Monitor", "price": 300}]))
+# products = [{"name": "Monitor", "price": 300}, {"name": "Laptop", "price": 1000},
+#             {"name": "Keyboard", "price": 300}]
+# task_07_7(products)
+#   -> [{"name": "Laptop", "price": 1000},
+#       {"name": "Keyboard", "price": 300},
+#       {"name": "Monitor", "price": 300}]
+def task_07_7(products): ...
+
+
+# print(task_07_7([{"name": "Monitor", "price": 300}, {"name": "Laptop", "price": 1000},
+#                  {"name": "Keyboard", "price": 300}]))
 
 
 # --- 07-8 --------------------------------------------------------------------
 # Функция со значением по умолчанию: power(x, n=2) -> x ** n.
 # task_07_8(5) -> 25        task_07_8(2, 3) -> 8
-def task_07_8(x, n=2):
-    ...
+def task_07_8(x, n=2): ...
+
+
 # print(task_07_8(5))
 # print(task_07_8(2, 3))
 
@@ -792,8 +869,9 @@ def task_07_8(x, n=2):
 # --- 07-9 --------------------------------------------------------------------
 # *args: сумма любого количества чисел.
 # task_07_9(1, 2, 3, 4) -> 10        task_07_9() -> 0
-def task_07_9(*args):
-    ...
+def task_07_9(*args): ...
+
+
 # print(task_07_9(1, 2, 3, 4))
 # print(task_07_9())
 
@@ -801,24 +879,27 @@ def task_07_9(*args):
 # --- 07-10 -------------------------------------------------------------------
 # **kwargs: собери профиль в словарь.
 # task_07_10(name="Anna", age=25) -> {"name": "Anna", "age": 25}
-def task_07_10(**kwargs):
-    ...
+def task_07_10(**kwargs): ...
+
+
 # print(task_07_10(name="Anna", age=25))
 
 
 # --- 07-11 -------------------------------------------------------------------
 # Функция: {символ: количество} — циклом.
 # task_07_11("hello") -> {"h": 1, "e": 1, "l": 2, "o": 1}
-def task_07_11(text):
-    ...
+def task_07_11(text): ...
+
+
 # print(task_07_11("hello"))
 
 
 # --- 07-12 -------------------------------------------------------------------
 # Максимум из трёх чисел (без max, ранние return).
 # task_07_12(1, 5, 3) -> 5
-def task_07_12(a, b, c):
-    ...
+def task_07_12(a, b, c): ...
+
+
 # print(task_07_12(1, 5, 3))
 
 
@@ -826,11 +907,15 @@ def task_07_12(a, b, c):
 # БЛОК 08. КЛАССЫ (OOP)
 # =============================================================================
 
+
 # --- 08-1 --------------------------------------------------------------------
 # Класс Dog(name, age): bark() печатает "Rex: гав!", birthday() -> возраст + 1.
-# rex = Dog("Rex", 3); rex.bark(); rex.birthday() -> 4
-class Dog:
-    ...
+# rex = Dog("Rex", 3)
+# rex.bark()     -> печатает: Rex: гав!
+# rex.birthday() -> 4  (и rex.age теперь 4)
+class Dog: ...
+
+
 # rex = Dog("Rex", 3)
 # rex.bark()
 # print(rex.birthday())
@@ -841,8 +926,12 @@ class Dog:
 #   атрибут КЛАССА category = "book"
 #   __str__ -> "Dune (1965)"
 #   is_old(current_year) -> True, если книге больше 50 лет
-class Book:
-    ...
+# str(Book("Dune", "Herbert", 1965))         -> "Dune (1965)"
+# Book("Dune", "Herbert", 1965).is_old(2026) -> True
+# Book.category                              -> "book"
+class Book: ...
+
+
 # print(str(Book("Dune", "Herbert", 1965)))
 # print(Book("Dune", "Herbert", 1965).is_old(2026))
 # print(Book.category)
@@ -853,8 +942,13 @@ class Book:
 #   deposit(amount): amount <= 0 -> raise ValueError
 #   withdraw(amount): снятие больше баланса -> raise ValueError
 #   @property balance + setter: отрицательное значение -> raise ValueError
-class BankAccount:
-    ...
+# acc = BankAccount("Anna", 100); acc.deposit(50); acc.balance -> 150
+# acc.deposit(0)     -> ValueError
+# acc.withdraw(1000) -> ValueError
+# acc.balance = -5   -> ValueError
+class BankAccount: ...
+
+
 # acc = BankAccount("Anna", 100)
 # acc.deposit(50)
 # print(acc.balance)
@@ -865,8 +959,10 @@ class BankAccount:
 #   @classmethod from_fahrenheit(cls, f) -> Temperature
 #   @staticmethod c_to_f(c) -> градусы по Фаренгейту
 # Temperature.from_fahrenheit(68).celsius -> 20.0
-class Temperature:
-    ...
+# Temperature.c_to_f(20)                  -> 68.0
+class Temperature: ...
+
+
 # print(round(Temperature.from_fahrenheit(68).celsius, 1))
 # print(Temperature.c_to_f(20))
 
@@ -875,23 +971,28 @@ class Temperature:
 # @dataclass Point(x, y) + метод distance_to(other) — манхэттенское расстояние.
 # Point(0, 0).distance_to(Point(3, 4)) -> 7
 @dataclass
-class Point:
-    ...
+class Point: ...
+
+
 # print(Point(0, 0).distance_to(Point(3, 4)))
 
 
 # --- 08-6 --------------------------------------------------------------------
 # class EBook(Book) с полем file_size_mb и super().__init__(...).
 # __str__ -> "Dune (1965) - 100 MB"
-class EBook(Book):
-    ...
+class EBook(Book): ...
+
+
 # print(str(EBook("Dune", "Herbert", 1965, 100)))
 
 
 # --- 08-7 --------------------------------------------------------------------
 # Класс Team(members): __len__ -> len(team), __getitem__ -> team[0].
-class Team:
-    ...
+# len(Team(["a", "b", "c"])) -> 3
+# Team(["a", "b"])[1]        -> "b"
+class Team: ...
+
+
 # print(len(Team(["a", "b", "c"])))
 # print(Team(["a", "b"])[1])
 
@@ -899,8 +1000,13 @@ class Team:
 # --- 08-8 --------------------------------------------------------------------
 # Класс Library(books): add_book(book), find_by_author(author) -> список книг.
 # (книги — объекты Book из задачи 08-2)
-class Library:
-    ...
+# lib = Library([Book("Dune", "Herbert", 1965)])
+# lib.add_book(Book("Emma", "Austen", 1815))
+# len(lib.find_by_author("Herbert")) -> 1
+# lib.find_by_author("Nobody")       -> []
+class Library: ...
+
+
 # lib = Library([Book("Dune", "Herbert", 1965)])
 # print(len(lib.find_by_author("Herbert")))
 
@@ -910,8 +1016,12 @@ class Library:
 #   fit(X): считает mean_ и std_ по столбцам
 #   transform(X): (x - mean) / std
 #   fit_transform(X): fit + transform
-class StandardScaler:
-    ...
+# X = [[1, 2], [3, 4], [5, 6]]
+# s.fit(X): s.mean_ -> [3.0, 4.0], s.std_ -> [1.633, 1.633] (округлённо, std как в numpy)
+# s.transform(X) -> [[-1.2247, -1.2247], [0.0, 0.0], [1.2247, 1.2247]] (округлённо)
+class StandardScaler: ...
+
+
 # s = StandardScaler()
 # s.fit([[1, 2], [3, 4], [5, 6]])
 # print(s.transform([[1, 2], [3, 4], [5, 6]]))
@@ -921,8 +1031,12 @@ class StandardScaler:
 # Класс User(name, age):
 #   @classmethod from_string(cls, "Anna,25") -> User
 #   @staticmethod is_adult(age) -> bool (>= 18)
-class User:
-    ...
+# User.from_string("Anna,25").name -> "Anna"
+# User.from_string("Anna,25").age  -> 25 (int, не строка)
+# User.is_adult(18) -> True        User.is_adult(17) -> False
+class User: ...
+
+
 # print(User.from_string("Anna,25").name)
 # print(User.is_adult(18))
 
@@ -931,11 +1045,13 @@ class User:
 # БЛОК 09. ОБРАБОТКА ОШИБОК
 # =============================================================================
 
+
 # --- 09-1 --------------------------------------------------------------------
 # div(a, b): при b == 0 верни None (через try/except), иначе a / b.
 # task_09_1(10, 2) -> 5.0        task_09_1(10, 0) -> None
-def task_09_1(a, b):
-    ...
+def task_09_1(a, b): ...
+
+
 # print(task_09_1(10, 2))
 # print(task_09_1(10, 0))
 
@@ -943,20 +1059,25 @@ def task_09_1(a, b):
 # --- 09-2 --------------------------------------------------------------------
 # read_int(text): верни int(text), а при плохом вводе
 # raise ValueError("не число: {text!r}").
-def task_09_2(text):
-    ...
+# task_09_2("42") -> 42
+# task_09_2("abc") -> ValueError: не число: 'abc'
+def task_09_2(text): ...
+
+
 # print(task_09_2("42"))
 
 
 # --- 09-3 --------------------------------------------------------------------
 # Свой класс EmptyListError(Exception) + функция average(nums):
 # пустой список -> raise EmptyListError, иначе среднее.
-class EmptyListError(Exception):
-    ...
+# task_09_3([2, 4]) -> 3.0
+# task_09_3([])     -> EmptyListError
+class EmptyListError(Exception): ...
 
 
-def task_09_3(nums):
-    ...
+def task_09_3(nums): ...
+
+
 # print(task_09_3([2, 4]))
 
 
@@ -964,8 +1085,9 @@ def task_09_3(nums):
 # parse_ints(raw): преврати список строк в список чисел,
 # «мусорные» значения пропусти (try/except внутри цикла).
 # task_09_4(["10", "20", "x", "40"]) -> [10, 20, 40]
-def task_09_4(raw):
-    ...
+def task_09_4(raw): ...
+
+
 # print(task_09_4(["10", "20", "x", "40"]))
 
 
@@ -973,8 +1095,11 @@ def task_09_4(raw):
 # safe_accuracy(y_true, y_pred): доля совпадений.
 # Пустой y_true -> raise ValueError, разная длина -> raise ValueError.
 # task_09_5([0, 1, 1], [0, 1, 0]) -> 0.6666666666666666
-def task_09_5(y_true, y_pred):
-    ...
+# task_09_5([], [])               -> ValueError
+# task_09_5([0, 1], [0])          -> ValueError
+def task_09_5(y_true, y_pred): ...
+
+
 # print(task_09_5([0, 1, 1], [0, 1, 0]))
 
 
@@ -982,8 +1107,10 @@ def task_09_5(y_true, y_pred):
 # train_test_split_sizes(n, test_ratio=0.2) -> (n_train, n_test).
 # test_ratio вне (0, 1) или n < 2 -> raise ValueError.
 # task_09_6(100, 0.2) -> (80, 20)
-def task_09_6(n, test_ratio=0.2):
-    ...
+# task_09_6(100, 1.5) -> ValueError        task_09_6(1) -> ValueError
+def task_09_6(n, test_ratio=0.2): ...
+
+
 # print(task_09_6(100, 0.2))
 
 
@@ -991,27 +1118,31 @@ def task_09_6(n, test_ratio=0.2):
 # БЛОК 10. NUMPY
 # =============================================================================
 
+
 # --- 10-1 --------------------------------------------------------------------
 # Список -> массив, умножь ВСЕ элементы на n, верни список.
 # task_10_1([10, 20, 30], 2) -> [20, 40, 60]
-def task_10_1(numbers, n):
-    ...
+def task_10_1(numbers, n): ...
+
+
 # print(task_10_1([10, 20, 30], 2))
 
 
 # --- 10-2 --------------------------------------------------------------------
 # Верни кортеж (min, max, mean) обычными числами (не numpy-типами).
 # task_10_2([10, 20, 30]) -> (10, 30, 20.0)
-def task_10_2(arr):
-    ...
+def task_10_2(arr): ...
+
+
 # print(task_10_2([10, 20, 30]))
 
 
 # --- 10-3 --------------------------------------------------------------------
 # Создай массив через np.arange(start, stop, step) и верни список.
-# task_10_3(0, 5, 0.5) -> [0.0, 0.5, 1.0, ..., 4.5]
-def task_10_3(start, stop, step):
-    ...
+# task_10_3(0, 5, 0.5) -> [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5]
+def task_10_3(start, stop, step): ...
+
+
 # print(task_10_3(0, 5, 0.5))
 
 
@@ -1019,40 +1150,45 @@ def task_10_3(start, stop, step):
 # Переведи градусы в радианы ВЕКТОРНО (все элементы сразу),
 # округли до 2 знаков, верни список.
 # task_10_4([0, 90, 180]) -> [0.0, 1.57, 3.14]
-def task_10_4(degrees):
-    ...
+def task_10_4(degrees): ...
+
+
 # print(task_10_4([0, 90, 180]))
 
 
 # --- 10-5 --------------------------------------------------------------------
 # Верни (уникальные, количество вхождений, самое частое значение).
 # task_10_5([1, 2, 1, 3, 1, 2]) -> ([1, 2, 3], [3, 2, 1], 1)
-def task_10_5(values):
-    ...
+def task_10_5(values): ...
+
+
 # print(task_10_5([1, 2, 1, 3, 1, 2]))
 
 
 # --- 10-6 --------------------------------------------------------------------
 # Рейтинг: имена по УБЫВАНИЮ баллов.
 # task_10_6(["A", "B", "C"], [85, 92, 78]) -> ["B", "A", "C"]
-def task_10_6(names, scores):
-    ...
+def task_10_6(names, scores): ...
+
+
 # print(task_10_6(["A", "B", "C"], [85, 92, 78]))
 
 
 # --- 10-7 --------------------------------------------------------------------
 # Стандартизация: (x - mean) / std для каждого числа. Верни список.
 # task_10_7([1, 2, 3]) -> [-1.2247, 0.0, 1.2247] (округлённо)
-def task_10_7(arr):
-    ...
+def task_10_7(arr): ...
+
+
 # print(task_10_7([1, 2, 3]))
 
 
 # --- 10-8 --------------------------------------------------------------------
 # Отбери значения БОЛЬШЕ среднего (маска + булева индексация), верни список.
 # task_10_8([1, 2, 3, 4, 10]) -> [10]
-def task_10_8(arr):
-    ...
+def task_10_8(arr): ...
+
+
 # print(task_10_8([1, 2, 3, 4, 10]))
 
 
@@ -1060,10 +1196,14 @@ def task_10_8(arr):
 # БЛОК 11. PANDAS
 # =============================================================================
 
+
 # --- 11-1 --------------------------------------------------------------------
 # Верни словарь {"shape": df.shape, "columns": список столбцов}.
-def task_11_1(df):
-    ...
+# df0 = pd.DataFrame({"name": ["Anna"], "age": [25]})
+# task_11_1(df0) -> {"shape": (1, 2), "columns": ["name", "age"]}
+def task_11_1(df): ...
+
+
 # df0 = pd.DataFrame({"name": ["Anna"], "age": [25]})
 # print(task_11_1(df0))
 
@@ -1071,51 +1211,76 @@ def task_11_1(df):
 # --- 11-2 --------------------------------------------------------------------
 # Отфильтруй строки: age > min_age И city из списка cities
 # (.isin + оператор &, не забудь скобки). Верни DataFrame.
-def task_11_2(df, min_age, cities):
-    ...
+# df0 = pd.DataFrame({"name": ["Anna", "Bob"], "age": [25, 30], "city": ["Moscow", "SPb"]})
+# task_11_2(df0, 26, ["SPb"]) ->
+#      name  age city
+#   1   Bob   30  SPb
+def task_11_2(df, min_age, cities): ...
+
+
 # df0 = pd.DataFrame({"name": ["Anna", "Bob"], "age": [25, 30], "city": ["Moscow", "SPb"]})
 # print(task_11_2(df0, 26, ["SPb"]))
 
 
 # --- 11-3 --------------------------------------------------------------------
 # Добавь столбец salary_k = salary / 100 и верни df.
-def task_11_3(df):
-    ...
+# df0 = pd.DataFrame({"salary": [80, 120]})
+# task_11_3(df0) ->
+#      salary  salary_k
+#   0      80       0.8
+#   1     120       1.2
+def task_11_3(df): ...
+
+
 # df0 = pd.DataFrame({"salary": [80, 120]})
 # print(task_11_3(df0))
 
 
 # --- 11-4 --------------------------------------------------------------------
 # Сколько раз встречается каждое значение столбца -> обычный dict.
-# task_11_4(df, "city") -> {"Moscow": 2, "SPb": 2, ...}
-def task_11_4(df, column):
-    ...
+# df0 = pd.DataFrame({"city": ["Moscow", "SPb", "Moscow"]})
+# task_11_4(df0, "city") -> {"Moscow": 2, "SPb": 1}
+def task_11_4(df, column): ...
+
+
 # df0 = pd.DataFrame({"city": ["Moscow", "SPb", "Moscow"]})
 # print(task_11_4(df0, "city"))
 
 
 # --- 11-5 --------------------------------------------------------------------
 # Сколько пропусков в каждом столбце -> dict.
-def task_11_5(df):
-    ...
+# df0 = pd.DataFrame({"age": [25, None], "city": ["Moscow", "SPb"]})
+# task_11_5(df0) -> {"age": 1, "city": 0}
+def task_11_5(df): ...
+
+
 # df0 = pd.DataFrame({"age": [25, None], "city": ["Moscow", "SPb"]})
 # print(task_11_5(df0))
 
 
 # --- 11-6 --------------------------------------------------------------------
 # Средняя зарплата по городам (groupby) -> dict.
-# task_11_6(df) -> {"Moscow": 75.0, ...}
-def task_11_6(df):
-    ...
-# df0 = pd.DataFrame({"city": ["Moscow", "SPb"], "salary": [70, 120]})
+# df0 = pd.DataFrame({"city": ["Moscow", "SPb", "Moscow"], "salary": [70, 120, 80]})
+# task_11_6(df0) -> {"Moscow": 75.0, "SPb": 120.0}
+def task_11_6(df): ...
+
+
+# df0 = pd.DataFrame({"city": ["Moscow", "SPb", "Moscow"], "salary": [70, 120, 80]})
 # print(task_11_6(df0))
 
 
 # --- 11-7 --------------------------------------------------------------------
 # Заполни пропуски в числовых столбцах медианой, верни новый df.
-def task_11_7(df):
-    ...
-# df0 = pd.DataFrame({"age": [25, None], "salary": [80, 120]})
+# df0 = pd.DataFrame({"age": [20, None, 30], "salary": [80, 120, None]})
+# task_11_7(df0) ->
+#       age  salary
+#   0  20.0    80.0
+#   1  25.0   120.0
+#   2  30.0   100.0
+def task_11_7(df): ...
+
+
+# df0 = pd.DataFrame({"age": [20, None, 30], "salary": [80, 120, None]})
 # print(task_11_7(df0))
 
 
@@ -1123,19 +1288,23 @@ def task_11_7(df):
 # БЛОК 12. ЛИНЕЙНАЯ АЛГЕБРА ДЛЯ ML
 # =============================================================================
 
+
 # --- 12-1 --------------------------------------------------------------------
 # Скалярное произведение векторов (без numpy).
 # task_12_1([1, 2, 3], [4, 5, 6]) -> 32
-def task_12_1(a, b):
-    ...
+def task_12_1(a, b): ...
+
+
 # print(task_12_1([1, 2, 3], [4, 5, 6]))
 
 
 # --- 12-2 --------------------------------------------------------------------
 # Умножение матрицы на вектор. Если len(matrix[0]) != len(vector) -> -1.
 # task_12_2([[1, 2], [2, 4]], [1, 2]) -> [5, 10]
-def task_12_2(matrix, vector):
-    ...
+# task_12_2([[1, 2]], [1])            -> -1
+def task_12_2(matrix, vector): ...
+
+
 # print(task_12_2([[1, 2], [2, 4]], [1, 2]))
 # print(task_12_2([[1, 2]], [1]))
 
@@ -1143,30 +1312,34 @@ def task_12_2(matrix, vector):
 # --- 12-3 --------------------------------------------------------------------
 # Транспонирование матрицы.
 # task_12_3([[1, 2, 3], [4, 5, 6]]) -> [[1, 4], [2, 5], [3, 6]]
-def task_12_3(matrix):
-    ...
+def task_12_3(matrix): ...
+
+
 # print(task_12_3([[1, 2, 3], [4, 5, 6]]))
 
 
 # --- 12-4 --------------------------------------------------------------------
 # Умножение матриц (без numpy; можно переиспользовать task_12_2 и task_12_3).
 # task_12_4([[1, 2], [3, 4]], [[5, 6], [7, 8]]) -> [[19, 22], [43, 50]]
-def task_12_4(a, b):
-    ...
+def task_12_4(a, b): ...
+
+
 # print(task_12_4([[1, 2], [3, 4]], [[5, 6], [7, 8]]))
 
 
 # --- 12-5 --------------------------------------------------------------------
 # L2-норма вектора (евклидова длина).
 # task_12_5([3, 4]) -> 5.0
-def task_12_5(vector):
-    ...
+def task_12_5(vector): ...
+
+
 # print(task_12_5([3, 4]))
 
 
 # --- 12-6 --------------------------------------------------------------------
 # Метрики: верни кортеж (MSE, accuracy).
 # task_12_6([1, 2, 3], [1, 2, 4]) -> (0.3333333333333333, 0.6666666666666666)
-def task_12_6(y_true, y_pred):
-    ...
+def task_12_6(y_true, y_pred): ...
+
+
 # print(task_12_6([1, 2, 3], [1, 2, 4]))
